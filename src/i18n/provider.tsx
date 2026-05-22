@@ -12,7 +12,7 @@ import {
 import { Lang, translations } from "./translations";
 
 const STORAGE_KEY = "dao-lang";
-const DEFAULT_LANG: Lang = "es";
+const DEFAULT_LANG: Lang = "en";
 
 type Translator = (key: string, vars?: Record<string, string | number>) => string;
 

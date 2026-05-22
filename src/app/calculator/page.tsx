@@ -3,9 +3,9 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { Dashboard } from "@/components/calculator/dashboard";
 
 export const metadata: Metadata = {
-  title: "Calculadora",
+  title: "Calculator",
   description:
-    "Convierte el Factor de Luz Diurna en DAo y DAo.con para puntos individuales, secciones verticales y matrices de planta, con mapas de calor y curvas de respuesta.",
+    "Convert Daylight Factor into DAo and DAo.con for single points, vertical sections and plan matrices, with live heatmaps and response curves.",
 };
 
 export default function CalculatorPage() {

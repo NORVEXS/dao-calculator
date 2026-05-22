@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s · DAo Calculator",
   },
   description:
-    "Convierte el Factor de Luz Diurna (DF) en Autonomía Lumínica con cielo cubierto (DAo) y Autonomía Lumínica Continua (DAo.con) al instante. Una calculadora científica con mapas de calor, curvas de respuesta y análisis de secciones verticales.",
+    "Convert Daylight Factor (DF) into Overcast Daylight Autonomy (DAo) and Continuous Overcast Daylight Autonomy (DAo.con) instantly. A premium scientific calculator with heatmaps, response curves and vertical-section analysis.",
   keywords: [
     "Daylight Factor",
     "Overcast Daylight Autonomy",
@@ -71,7 +71,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} min-h-dvh antialiased`}
       >
