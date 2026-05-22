@@ -134,9 +134,22 @@ npm run dev
 
 ## Deployment
 
-The app is a standard Next.js project and deploys to **Vercel** with zero
-configuration: import the repository on Vercel and it builds automatically. No
-environment variables are required — all computation runs in the browser.
+The app is a **static export** (`output: 'export'`) and is continuously
+deployed to **Cloudflare Pages**. A GitHub Action
+([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)) runs on every
+push to `main`: it builds the site and runs
+`wrangler pages deploy out --project-name=dao-calculator`. Live at
+**https://dao-calculator.pages.dev**.
+
+To deploy your own fork, set two repository secrets and push to `main`:
+
+| Secret | Value |
+| ------ | ----- |
+| `CLOUDFLARE_API_TOKEN` | A Cloudflare token with the *Pages: Edit* permission |
+| `CLOUDFLARE_ACCOUNT_ID` | Your Cloudflare account ID |
+
+No runtime environment variables are required — all computation runs in the
+browser.
 
 ## References
 
