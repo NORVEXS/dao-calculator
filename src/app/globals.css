@@ -130,6 +130,10 @@
     font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
   }
+  ::selection {
+    background: color-mix(in oklab, var(--brand) 28%, transparent);
+    color: var(--foreground);
+  }
   html {
     @apply font-sans;
     scroll-behavior: smooth;

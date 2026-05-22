@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     "Campano",
   ],
   authors: [{ name: "Based on the method by I. Acosta & M. A. Campano" }],
+  applicationName: "DAo Calculator",
+  category: "science",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: SITE_URL,
@@ -51,13 +54,28 @@ export const metadata: Metadata = {
     description:
       "Convert DF into DAo and DAo.con instantly with scientific-grade visualizations.",
     siteName: "DAo Calculator",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "DAo Calculator — Overcast Daylight Autonomy from the Daylight Factor",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DAo Calculator",
-    description: "Convert Daylight Factor into Overcast Daylight Autonomy.",
+    title: "DAo Calculator — Overcast Daylight Autonomy from Daylight Factor",
+    description:
+      "Convert Daylight Factor into Overcast Daylight Autonomy with scientific-grade visualizations.",
+    images: ["/og.png"],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export const viewport: Viewport = {

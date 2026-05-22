@@ -24,7 +24,7 @@ export function HowItWorks() {
   ];
 
   return (
-    <section id="how" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <section id="how" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
       <Reveal className="max-w-2xl">
         <SectionEyebrow>{t("how.eyebrow")}</SectionEyebrow>
         <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
@@ -70,7 +70,7 @@ export function ScienceSection() {
   return (
     <section
       id="science"
-      className="relative overflow-hidden border-y border-border/60 bg-card/30"
+      className="relative scroll-mt-20 overflow-hidden border-y border-border/60 bg-card/30"
     >
       <div className="absolute inset-0 -z-10 bg-grid opacity-40" />
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
@@ -148,7 +148,7 @@ export function MetricsSection() {
   ];
 
   return (
-    <section id="metrics" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <section id="metrics" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
       <Reveal className="max-w-2xl">
         <SectionEyebrow>{t("metrics.eyebrow")}</SectionEyebrow>
         <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
