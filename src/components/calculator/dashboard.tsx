@@ -12,7 +12,9 @@ import { ModeMatrix } from "./mode-matrix";
 import { CalculatorMode, useCalculatorStore } from "@/store/calculator-store";
 import { useT } from "@/i18n/provider";
 
-export function Dashboard({ initialMode }: { initialMode?: CalculatorMode }) {
+const VALID_MODES: CalculatorMode[] = ["single", "section", "matrix"];
+
+export function Dashboard() {
   const t = useT();
   const mode = useCalculatorStore((s) => s.mode);
   const setMode = useCalculatorStore((s) => s.setMode);
@@ -24,8 +26,12 @@ export function Dashboard({ initialMode }: { initialMode?: CalculatorMode }) {
   ];
 
   useEffect(() => {
-    if (initialMode) setMode(initialMode);
-  }, [initialMode, setMode]);
+    // Static export: read the requested mode from the URL on the client.
+    const requested = new URLSearchParams(window.location.search).get("mode");
+    if (requested && VALID_MODES.includes(requested as CalculatorMode)) {
+      setMode(requested as CalculatorMode);
+    }
+  }, [setMode]);
 
   return (
     <TooltipProvider delay={150}>

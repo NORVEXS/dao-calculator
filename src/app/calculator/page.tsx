@@ -1,31 +1,19 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/site-header";
 import { Dashboard } from "@/components/calculator/dashboard";
-import type { CalculatorMode } from "@/store/calculator-store";
 
 export const metadata: Metadata = {
-  title: "Calculator",
+  title: "Calculadora",
   description:
-    "Convert Daylight Factor into DAo and DAo.con for single points, vertical sections and full plan matrices, with live heatmaps and response curves.",
+    "Convierte el Factor de Luz Diurna en DAo y DAo.con para puntos individuales, secciones verticales y matrices de planta, con mapas de calor y curvas de respuesta.",
 };
 
-const VALID_MODES: CalculatorMode[] = ["single", "section", "matrix"];
-
-export default async function CalculatorPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ mode?: string }>;
-}) {
-  const { mode } = await searchParams;
-  const initialMode = VALID_MODES.includes(mode as CalculatorMode)
-    ? (mode as CalculatorMode)
-    : undefined;
-
+export default function CalculatorPage() {
   return (
     <div className="flex min-h-dvh flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <Dashboard initialMode={initialMode} />
+        <Dashboard />
       </main>
     </div>
   );

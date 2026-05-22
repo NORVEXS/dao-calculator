@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://dao-calculator.vercel.app";
+export const dynamic = "force-static";
+
+const SITE_URL = "https://dao-calculator.pages.dev";
 
 export default function robots(): MetadataRoute.Robots {
   return {

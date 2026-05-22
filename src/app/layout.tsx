@@ -21,7 +21,7 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["500", "600", "700"],
 });
 
-const SITE_URL = "https://dao-calculator.vercel.app";
+const SITE_URL = "https://dao-calculator.pages.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
