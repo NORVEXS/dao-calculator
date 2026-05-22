@@ -10,8 +10,10 @@ import { MetricGauge } from "@/components/scientific/metric-gauge";
 import { buildExteriorProfile, computeDao, DEFAULT_PARAMETERS } from "@/lib/scientific/dao";
 import { classifyDao } from "@/lib/colormap";
 import { firstSliderValue } from "@/lib/format";
+import { renderEmphasis, useT } from "@/i18n/provider";
 
 export function Hero() {
+  const t = useT();
   const [df, setDf] = useState(3);
   const profile = useMemo(() => buildExteriorProfile(DEFAULT_PARAMETERS), []);
   const result = useMemo(
@@ -33,7 +35,7 @@ export function Hero() {
             className="inline-flex w-fit items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur"
           >
             <Sparkles className="size-3.5 text-[var(--daylight)]" />
-            University of Seville daylighting method · validated
+            {t("hero.badge")}
           </motion.div>
 
           <motion.h1
@@ -42,8 +44,9 @@ export function Hero() {
             transition={{ duration: 0.55, delay: 0.05 }}
             className="font-heading mt-5 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           >
-            Turn a <span className="text-gradient">Daylight Factor</span> into
-            Overcast Daylight Autonomy — instantly.
+            {t("hero.titlePre")}
+            <span className="text-gradient">{t("hero.titleHighlight")}</span>
+            {t("hero.titlePost")}
           </motion.h1>
 
           <motion.p
@@ -52,13 +55,7 @@ export function Hero() {
             transition={{ duration: 0.55, delay: 0.12 }}
             className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            A scientific calculator that converts the static{" "}
-            <strong className="font-medium text-foreground">DF</strong> into the
-            dynamic{" "}
-            <strong className="font-medium text-foreground">DAo</strong> and{" "}
-            <strong className="font-medium text-foreground">DAo.con</strong>{" "}
-            metrics — for single points, vertical sections and full floor-plan
-            matrices, with heatmaps and response curves.
+            {renderEmphasis(t("hero.subtitle"))}
           </motion.p>
 
           <motion.div
@@ -69,12 +66,12 @@ export function Hero() {
           >
             <Button asChild size="lg" className="gap-2">
               <Link href="/calculator">
-                Open the calculator
+                {t("hero.ctaOpen")}
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/#science">See the method</Link>
+              <Link href="/#science">{t("hero.ctaMethod")}</Link>
             </Button>
           </motion.div>
 
@@ -84,9 +81,9 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-10 grid max-w-md grid-cols-3 gap-6"
           >
-            <Stat value="3" label="Calculation modes" />
-            <Stat value="365×32" label="Sky samples / point" />
-            <Stat value="0.00%" label="Error vs. reference" />
+            <Stat value="3" label={t("hero.statModes")} />
+            <Stat value="365×32" label={t("hero.statSamples")} />
+            <Stat value="0.00%" label={t("hero.statError")} />
           </motion.dl>
         </div>
 
@@ -101,19 +98,24 @@ export function Hero() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm font-medium">
                 <Sun className="size-4 text-[var(--daylight)]" />
-                Live conversion
+                {t("hero.liveConversion")}
               </div>
               <span className="rounded-full bg-secondary px-2.5 py-1 text-xs text-secondary-foreground">
-                {band.label}
+                {t(`bands.${band.tone}`)}
               </span>
             </div>
 
             <div className="mt-6 grid grid-cols-2 gap-2">
-              <MetricGauge value={result.dao} label="DAo" sublabel="autonomy" size={150} />
+              <MetricGauge
+                value={result.dao}
+                label="DAo"
+                sublabel={t("common.autonomy")}
+                size={150}
+              />
               <MetricGauge
                 value={result.daoCon}
                 label="DAo.con"
-                sublabel="continuous"
+                sublabel={t("common.continuous")}
                 size={150}
               />
             </div>
@@ -121,7 +123,7 @@ export function Hero() {
             <div className="mt-6">
               <div className="flex items-baseline justify-between">
                 <label className="text-sm text-muted-foreground">
-                  Daylight Factor
+                  {t("hero.daylightFactor")}
                 </label>
                 <span className="font-mono text-lg font-semibold tabular-nums">
                   {df.toFixed(2)}%
@@ -136,8 +138,7 @@ export function Hero() {
                 className="mt-3"
               />
               <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                {band.description} Computed for latitude 37°, an 08:00–17:00
-                schedule and a 300 lx target — fully adjustable inside.
+                {t(`bands.${band.tone}Desc`)} {t("hero.demoNote")}
               </p>
             </div>
           </div>

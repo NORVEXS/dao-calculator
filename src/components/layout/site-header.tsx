@@ -4,9 +4,12 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageToggle } from "@/components/language-toggle";
 import { Button } from "@/components/ui/button";
+import { useT } from "@/i18n/provider";
 
 export function SiteHeader() {
+  const t = useT();
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 glass">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -15,16 +18,17 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
-          <NavLink href="/#how">How it works</NavLink>
-          <NavLink href="/#science">The science</NavLink>
-          <NavLink href="/#metrics">Metrics</NavLink>
+          <NavLink href="/#how">{t("nav.how")}</NavLink>
+          <NavLink href="/#science">{t("nav.science")}</NavLink>
+          <NavLink href="/#metrics">{t("nav.metrics")}</NavLink>
         </nav>
 
         <div className="flex items-center gap-1.5">
+          <LanguageToggle />
           <ThemeToggle />
           <Button asChild size="sm" className="gap-1.5">
             <Link href="/calculator">
-              Open calculator
+              {t("nav.openCalculator")}
               <ArrowUpRight className="size-4" />
             </Link>
           </Button>

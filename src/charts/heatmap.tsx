@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { daylightScale, daylightGradient, prefersLightText } from "@/lib/colormap";
+import { useT } from "@/i18n/provider";
 
 export interface HeatmapProps {
   /** Row-major values. */
@@ -23,6 +24,7 @@ export function Heatmap({
   unit = "%",
   showValues = true,
 }: HeatmapProps) {
+  const t = useT();
   const [hover, setHover] = useState<{ r: number; c: number } | null>(null);
   const rows = values.length;
   const cols = values[0]?.length ?? 0;
@@ -34,7 +36,7 @@ export function Heatmap({
         {/* Y axis label */}
         <div className="flex items-center">
           <span className="rotate-180 text-[0.65rem] uppercase tracking-wide text-muted-foreground [writing-mode:vertical-rl]">
-            Depth →
+            {t("heatmap.depth")}
           </span>
         </div>
 
@@ -71,8 +73,8 @@ export function Heatmap({
           </div>
           {/* X axis */}
           <div className="mt-1 flex justify-between text-[0.65rem] uppercase tracking-wide text-muted-foreground">
-            <span>Window</span>
-            <span>Width →</span>
+            <span>{t("heatmap.window")}</span>
+            <span>{t("heatmap.width")}</span>
           </div>
         </div>
       </div>
@@ -92,7 +94,7 @@ export function Heatmap({
 
       {hover && (
         <p className="text-center text-xs text-muted-foreground">
-          Cell [{hover.r + 1}, {hover.c + 1}] ·{" "}
+          {t("heatmap.cell")} [{hover.r + 1}, {hover.c + 1}] ·{" "}
           {(hover.c * spacing).toFixed(1)}×{(hover.r * spacing).toFixed(1)} m ·{" "}
           <span className="font-mono font-medium text-foreground">
             {values[hover.r][hover.c].toFixed(1)}

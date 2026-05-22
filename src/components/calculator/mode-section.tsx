@@ -9,8 +9,10 @@ import { SectionProfile, SectionStrip, type SectionDatum } from "@/charts/sectio
 import { useCalculatorStore } from "@/store/calculator-store";
 import { useDaoCompute } from "@/hooks/use-dao";
 import { downloadCSV } from "@/lib/export";
+import { useT } from "@/i18n/provider";
 
 export function ModeSection() {
+  const t = useT();
   const section = useCalculatorStore((s) => s.section);
   const setPoint = useCalculatorStore((s) => s.setSectionPoint);
   const addPoint = useCalculatorStore((s) => s.addSectionPoint);
@@ -43,17 +45,14 @@ export function ModeSection() {
       <Card className="flex flex-col p-6">
         <div className="flex items-center gap-2">
           <MoveVertical className="size-4 text-[var(--daylight)]" />
-          <h3 className="font-heading text-base font-semibold">Vertical section</h3>
+          <h3 className="font-heading text-base font-semibold">{t("section.title")}</h3>
         </div>
-        <p className="mt-1 text-sm text-muted-foreground">
-          A list of points across a section — typically DF decreasing with depth
-          from the window.
-        </p>
+        <p className="mt-1 text-sm text-muted-foreground">{t("section.subtitle")}</p>
 
         <div className="mt-5 grid grid-cols-[1fr_1fr_auto_auto] items-center gap-x-2 px-1 text-[0.7rem] font-medium uppercase tracking-wide text-muted-foreground">
-          <span>Dist. (m)</span>
-          <span>DF (%)</span>
-          <span className="w-14 text-right">DAo</span>
+          <span>{t("section.colDist")}</span>
+          <span>{t("section.colDf")}</span>
+          <span className="w-14 text-right">{t("section.colDao")}</span>
           <span className="w-6" />
         </div>
 
@@ -101,7 +100,7 @@ export function ModeSection() {
         <div className="mt-4 flex gap-2">
           <Button variant="outline" size="sm" className="flex-1 gap-1.5" onClick={addPoint}>
             <Plus className="size-4" />
-            Add point
+            {t("section.addPoint")}
           </Button>
           <Button variant="outline" size="sm" className="gap-1.5" onClick={exportCsv}>
             <Download className="size-4" />
@@ -111,10 +110,8 @@ export function ModeSection() {
       </Card>
 
       <Card className="p-6">
-        <h3 className="font-heading text-base font-semibold">Section profile</h3>
-        <p className="text-sm text-muted-foreground">
-          DAo and DAo.con along the section depth.
-        </p>
+        <h3 className="font-heading text-base font-semibold">{t("section.profileTitle")}</h3>
+        <p className="text-sm text-muted-foreground">{t("section.profileSubtitle")}</p>
         {section.length >= 2 ? (
           <>
             <div className="mt-4">
@@ -122,7 +119,7 @@ export function ModeSection() {
             </div>
             <div className="mt-6">
               <p className="mb-2 text-xs font-medium text-muted-foreground">
-                Daylight autonomy by depth
+                {t("section.byDepth")}
               </p>
               <SectionStrip data={data} />
             </div>
@@ -136,13 +133,13 @@ export function ModeSection() {
 }
 
 function EmptyHint() {
+  const t = useT();
   return (
     <div className="mt-6 flex h-64 flex-col items-center justify-center rounded-xl border border-dashed border-border text-center">
       <MoveVertical className="size-8 text-muted-foreground/50" />
-      <p className="mt-3 text-sm font-medium">Add at least two points</p>
+      <p className="mt-3 text-sm font-medium">{t("section.emptyTitle")}</p>
       <p className="mt-1 max-w-xs text-xs text-muted-foreground">
-        A section needs two or more readings to plot how daylight autonomy
-        changes with depth.
+        {t("section.emptyBody")}
       </p>
     </div>
   );

@@ -17,11 +17,13 @@ import { useCalculatorStore } from "@/store/calculator-store";
 import { useDaoCompute } from "@/hooks/use-dao";
 import { daylightScale, prefersLightText } from "@/lib/colormap";
 import { downloadCSV, downloadJSON } from "@/lib/export";
+import { useT } from "@/i18n/provider";
 import { FieldRow } from "./fields";
 
 type Metric = "dao" | "daoCon" | "df";
 
 export function ModeMatrix() {
+  const t = useT();
   const {
     matrix,
     matrixRows,
@@ -109,15 +111,12 @@ export function ModeMatrix() {
       <Card className="flex flex-col p-6">
         <div className="flex items-center gap-2">
           <Grid3x3 className="size-4 text-[var(--daylight)]" />
-          <h3 className="font-heading text-base font-semibold">Plan matrix</h3>
+          <h3 className="font-heading text-base font-semibold">{t("matrix.title")}</h3>
         </div>
-        <p className="mt-1 text-sm text-muted-foreground">
-          A grid of DF readings across a floor plan. Cells are tinted by their
-          DAo as you type.
-        </p>
+        <p className="mt-1 text-sm text-muted-foreground">{t("matrix.subtitle")}</p>
 
         <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
-          <FieldRow label="Rows" hint="Number of grid rows (depth into the room).">
+          <FieldRow label={t("matrix.rows")} hint={t("matrix.rowsHint")}>
             <Input
               type="number"
               min={1}
@@ -127,7 +126,7 @@ export function ModeMatrix() {
               className="h-8 w-16 text-right font-mono tabular-nums"
             />
           </FieldRow>
-          <FieldRow label="Columns" hint="Number of grid columns (room width).">
+          <FieldRow label={t("matrix.cols")} hint={t("matrix.colsHint")}>
             <Input
               type="number"
               min={1}
@@ -137,7 +136,7 @@ export function ModeMatrix() {
               className="h-8 w-16 text-right font-mono tabular-nums"
             />
           </FieldRow>
-          <FieldRow label="Spacing" hint="Distance between grid nodes, for axis labels.">
+          <FieldRow label={t("matrix.spacing")} hint={t("matrix.spacingHint")}>
             <div className="relative">
               <Input
                 type="number"
@@ -155,7 +154,7 @@ export function ModeMatrix() {
           <div className="flex items-end justify-end">
             <Button variant="outline" size="sm" className="gap-1.5" onClick={fillMatrixGradient}>
               <Wand2 className="size-3.5" />
-              Sample fill
+              {t("matrix.sampleFill")}
             </Button>
           </div>
         </div>
@@ -207,24 +206,24 @@ export function ModeMatrix() {
 
       <Card className="p-6">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="font-heading text-base font-semibold">Heatmap</h3>
+          <h3 className="font-heading text-base font-semibold">{t("matrix.heatmap")}</h3>
           <Select value={metric} onValueChange={(v) => setMetric(v as Metric)}>
             <SelectTrigger size="sm" className="w-36">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="dao">DAo</SelectItem>
-              <SelectItem value="daoCon">DAo.con</SelectItem>
-              <SelectItem value="df">Daylight Factor</SelectItem>
+              <SelectItem value="dao">{t("matrix.metricDao")}</SelectItem>
+              <SelectItem value="daoCon">{t("matrix.metricCon")}</SelectItem>
+              <SelectItem value="df">{t("matrix.metricDf")}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         <div className="mt-4 grid grid-cols-4 gap-2">
-          <Stat label="Mean DAo" value={stats.mean} />
-          <Stat label="Min" value={stats.min} />
-          <Stat label="Max" value={stats.max} />
-          <Stat label="Area ≥ 50%" value={stats.coverage} accent />
+          <Stat label={t("matrix.meanDao")} value={stats.mean} />
+          <Stat label={t("matrix.min")} value={stats.min} />
+          <Stat label={t("matrix.max")} value={stats.max} />
+          <Stat label={t("matrix.coverage")} value={stats.coverage} accent />
         </div>
 
         <div className="mt-5">
@@ -238,9 +237,7 @@ export function ModeMatrix() {
 
         <p className="mt-4 flex items-center gap-1.5 text-xs text-muted-foreground">
           <Sparkles className="size-3.5 text-[var(--daylight)]" />
-          {metric === "df"
-            ? "Showing the raw Daylight Factor input."
-            : "Each node converts its DF into the selected metric using the parameters on the left."}
+          {metric === "df" ? t("matrix.noteDf") : t("matrix.noteOther")}
         </p>
       </Card>
     </div>

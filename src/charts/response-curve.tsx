@@ -13,6 +13,7 @@ import {
   YAxis,
 } from "recharts";
 import type { CurvePoint } from "@/lib/scientific/dao";
+import { useT } from "@/i18n/provider";
 
 export function ResponseCurve({
   data,
@@ -27,6 +28,7 @@ export function ResponseCurve({
   daoConAtMarker?: number;
   height?: number;
 }) {
+  const t = useT();
   return (
     <ResponsiveContainer width="100%" height={height}>
       <ComposedChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: -16 }}>
@@ -50,7 +52,7 @@ export function ResponseCurve({
           tickLine={false}
           axisLine={{ stroke: "var(--border)" }}
           label={{
-            value: "Daylight Factor (%)",
+            value: t("chart.dfAxis"),
             position: "insideBottom",
             offset: -2,
             fontSize: 11,

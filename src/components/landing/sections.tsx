@@ -13,37 +13,24 @@ import {
 import { Reveal } from "./reveal";
 import { Button } from "@/components/ui/button";
 import { daylightGradient } from "@/lib/colormap";
+import { renderEmphasis, useT } from "@/i18n/provider";
 
 export function HowItWorks() {
+  const t = useT();
   const steps = [
-    {
-      icon: Ruler,
-      title: "Enter your Daylight Factor",
-      body: "Provide DF at a point, along a vertical section, or across a whole floor-plan grid. DF is a static, location-independent indicator of a space's daylight performance.",
-    },
-    {
-      icon: CloudSun,
-      title: "We model the overcast sky",
-      body: "For every 15-minute step of the occupied year we compute the CIE overcast-sky exterior illuminance from solar geometry, then the interior illuminance as E = DF × E_ext.",
-    },
-    {
-      icon: Target,
-      title: "Read DAo & DAo.con",
-      body: "DAo is the share of occupied time the space stays above your lux target; DAo.con also credits partial daylight. Results render as gauges, curves and heatmaps.",
-    },
+    { icon: Ruler, title: t("how.step1Title"), body: t("how.step1Body") },
+    { icon: CloudSun, title: t("how.step2Title"), body: t("how.step2Body") },
+    { icon: Target, title: t("how.step3Title"), body: t("how.step3Body") },
   ];
 
   return (
     <section id="how" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <Reveal className="max-w-2xl">
-        <SectionEyebrow>How it works</SectionEyebrow>
+        <SectionEyebrow>{t("how.eyebrow")}</SectionEyebrow>
         <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-          Complex daylight science, three simple steps
+          {t("how.title")}
         </h2>
-        <p className="mt-4 text-muted-foreground">
-          The hard part — a full annual overcast-sky simulation — runs instantly
-          in your browser. You only ever think in Daylight Factor.
-        </p>
+        <p className="mt-4 text-muted-foreground">{t("how.subtitle")}</p>
       </Reveal>
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -71,12 +58,13 @@ export function HowItWorks() {
 }
 
 export function ScienceSection() {
+  const t = useT();
   const chain = [
-    { label: "Solar geometry", detail: "δ, equation of time, hour angle" },
-    { label: "Solar elevation", detail: "γ = f(δ, latitude, H)" },
-    { label: "Exterior illuminance", detail: "CIE overcast: (7/9)π(100 + 7580·sinγ^1.36)" },
-    { label: "Interior illuminance", detail: "E_int = E_ext × DF/100" },
-    { label: "DAo / DAo.con", detail: "count & continuous credit vs. threshold" },
+    { label: t("science.chain1"), detail: t("science.chain1d") },
+    { label: t("science.chain2"), detail: t("science.chain2d") },
+    { label: t("science.chain3"), detail: t("science.chain3d") },
+    { label: t("science.chain4"), detail: t("science.chain4d") },
+    { label: t("science.chain5"), detail: t("science.chain5d") },
   ];
 
   return (
@@ -88,26 +76,19 @@ export function ScienceSection() {
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <Reveal>
-            <SectionEyebrow>The science</SectionEyebrow>
+            <SectionEyebrow>{t("science.eyebrow")}</SectionEyebrow>
             <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              A faithful annual daylight model
+              {t("science.title")}
             </h2>
             <p className="mt-4 text-muted-foreground">
-              This tool reproduces the original University of Seville workbook
-              exactly. DAo is{" "}
-              <strong className="text-foreground">
-                independent of orientation and location
-              </strong>{" "}
-              because it builds on the static Daylight Factor — yet the
-              conversion still accounts for latitude, schedule and your
-              illuminance threshold.
+              {renderEmphasis(t("science.subtitle"))}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild>
-                <Link href="/calculator">Try it now</Link>
+                <Link href="/calculator">{t("science.tryNow")}</Link>
               </Button>
               <span className="inline-flex items-center rounded-lg border border-border/70 bg-background/60 px-3 py-2 text-xs text-muted-foreground">
-                CIE Standard Overcast Sky · 300 lx default
+                {t("science.skyNote")}
               </span>
             </div>
           </Reveal>
@@ -142,35 +123,36 @@ export function ScienceSection() {
 }
 
 export function MetricsSection() {
+  const t = useT();
   const cards = [
     {
       icon: TrendingUp,
       tag: "DAo",
-      title: "Overcast Daylight Autonomy",
-      body: "The percentage of occupied time a point stays at or above the target illuminance (typically 300 lx) under overcast skies — the worst-case daylight scenario.",
-      example: "DAo = 50% → half the occupied hours need no electric light.",
+      title: t("metrics.daoTitle"),
+      body: t("metrics.daoBody"),
+      example: t("metrics.daoExample"),
     },
     {
       icon: LineChart,
       tag: "DAo.con",
-      title: "Continuous Overcast Daylight Autonomy",
-      body: "A nuanced version that also credits partial daylight: a point at 150 lx against a 300 lx target contributes 0.5 instead of being discarded.",
-      example: "DAo.con = 0.75 → on average 75% of the target is reached.",
+      title: t("metrics.conTitle"),
+      body: t("metrics.conBody"),
+      example: t("metrics.conExample"),
     },
   ];
 
   const modes = [
-    { icon: Target, label: "Single point", href: "/calculator?mode=single" },
-    { icon: MoveVertical, label: "Vertical section", href: "/calculator?mode=section" },
-    { icon: Grid3x3, label: "Plan matrix", href: "/calculator?mode=matrix" },
+    { icon: Target, label: t("metrics.modeSingle"), href: "/calculator?mode=single" },
+    { icon: MoveVertical, label: t("metrics.modeSection"), href: "/calculator?mode=section" },
+    { icon: Grid3x3, label: t("metrics.modeMatrix"), href: "/calculator?mode=matrix" },
   ];
 
   return (
     <section id="metrics" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <Reveal className="max-w-2xl">
-        <SectionEyebrow>The metrics</SectionEyebrow>
+        <SectionEyebrow>{t("metrics.eyebrow")}</SectionEyebrow>
         <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-          Two metrics, one clear picture
+          {t("metrics.title")}
         </h2>
       </Reveal>
 
@@ -204,10 +186,10 @@ export function MetricsSection() {
         <div className="mt-10 flex flex-col items-center justify-between gap-5 rounded-2xl border border-border/70 bg-card/60 p-7 sm:flex-row">
           <div>
             <h3 className="font-heading text-lg font-semibold">
-              Three ways to calculate
+              {t("metrics.modesTitle")}
             </h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              From a single DF reading to a full floor-plan heatmap.
+              {t("metrics.modesSubtitle")}
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -227,21 +209,21 @@ export function MetricsSection() {
 }
 
 export function CtaSection() {
+  const t = useT();
   return (
     <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
       <Reveal>
         <div className="glow-brand relative overflow-hidden rounded-3xl border border-border/70 bg-card/70 px-6 py-14 text-center sm:px-12">
           <div className="absolute inset-0 -z-10 aurora opacity-60" />
           <h2 className="font-heading mx-auto max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
-            Make daylight performance obvious.
+            {t("cta.title")}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Open the calculator and convert your Daylight Factors into DAo and
-            DAo.con — no install, no spreadsheet, instant visuals.
+            {t("cta.subtitle")}
           </p>
           <div className="mt-8">
             <Button asChild size="lg">
-              <Link href="/calculator">Launch the calculator</Link>
+              <Link href="/calculator">{t("cta.button")}</Link>
             </Button>
           </div>
         </div>

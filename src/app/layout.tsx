@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LanguageProvider } from "@/i18n/provider";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s · DAo Calculator",
   },
   description:
-    "Convert Daylight Factor (DF) into Overcast Daylight Autonomy (DAo) and Continuous Overcast Daylight Autonomy (DAo.con) instantly. A premium scientific calculator with heatmaps, response curves and vertical-section analysis.",
+    "Convierte el Factor de Luz Diurna (DF) en Autonomía Lumínica con cielo cubierto (DAo) y Autonomía Lumínica Continua (DAo.con) al instante. Una calculadora científica con mapas de calor, curvas de respuesta y análisis de secciones verticales.",
   keywords: [
     "Daylight Factor",
     "Overcast Daylight Autonomy",
@@ -70,7 +71,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} min-h-dvh antialiased`}
       >
@@ -80,8 +81,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster richColors position="top-center" />
+          <LanguageProvider>
+            {children}
+            <Toaster richColors position="top-center" />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

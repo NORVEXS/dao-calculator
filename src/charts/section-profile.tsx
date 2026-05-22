@@ -10,6 +10,7 @@ import {
   YAxis,
 } from "recharts";
 import { daylightScale } from "@/lib/colormap";
+import { useT } from "@/i18n/provider";
 
 export interface SectionDatum {
   distance: number;
@@ -25,6 +26,7 @@ export function SectionProfile({
   data: SectionDatum[];
   height?: number;
 }) {
+  const t = useT();
   return (
     <ResponsiveContainer width="100%" height={height}>
       <ComposedChart data={data} margin={{ top: 8, right: 16, bottom: 16, left: -16 }}>
@@ -38,7 +40,7 @@ export function SectionProfile({
           axisLine={{ stroke: "var(--border)" }}
           tickFormatter={(v) => `${v}`}
           label={{
-            value: "Distance from façade (m)",
+            value: t("section.distanceAxis"),
             position: "insideBottom",
             offset: -6,
             fontSize: 11,
@@ -78,6 +80,7 @@ export function SectionProfile({
 
 /** A horizontal section strip colored by DAo with depth from the window. */
 export function SectionStrip({ data }: { data: SectionDatum[] }) {
+  const t = useT();
   if (!data.length) return null;
   return (
     <div>
@@ -92,8 +95,8 @@ export function SectionStrip({ data }: { data: SectionDatum[] }) {
         ))}
       </div>
       <div className="mt-1 flex justify-between text-[0.65rem] text-muted-foreground">
-        <span>Window ({data[0].distance} m)</span>
-        <span>Deep ({data[data.length - 1].distance} m)</span>
+        <span>{t("section.window")} ({data[0].distance} m)</span>
+        <span>{t("section.deep")} ({data[data.length - 1].distance} m)</span>
       </div>
     </div>
   );

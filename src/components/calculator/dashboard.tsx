@@ -10,16 +10,18 @@ import { ModeSingle } from "./mode-single";
 import { ModeSection } from "./mode-section";
 import { ModeMatrix } from "./mode-matrix";
 import { CalculatorMode, useCalculatorStore } from "@/store/calculator-store";
-
-const TABS: { value: CalculatorMode; label: string; icon: React.ElementType }[] = [
-  { value: "single", label: "Single point", icon: Target },
-  { value: "section", label: "Vertical section", icon: MoveVertical },
-  { value: "matrix", label: "Plan matrix", icon: Grid3x3 },
-];
+import { useT } from "@/i18n/provider";
 
 export function Dashboard({ initialMode }: { initialMode?: CalculatorMode }) {
+  const t = useT();
   const mode = useCalculatorStore((s) => s.mode);
   const setMode = useCalculatorStore((s) => s.setMode);
+
+  const tabs: { value: CalculatorMode; label: string; icon: React.ElementType }[] = [
+    { value: "single", label: t("calc.tabSingle"), icon: Target },
+    { value: "section", label: t("calc.tabSection"), icon: MoveVertical },
+    { value: "matrix", label: t("calc.tabMatrix"), icon: Grid3x3 },
+  ];
 
   useEffect(() => {
     if (initialMode) setMode(initialMode);
@@ -30,12 +32,9 @@ export function Dashboard({ initialMode }: { initialMode?: CalculatorMode }) {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-1">
           <h1 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
-            DAo Calculator
+            {t("calc.title")}
           </h1>
-          <p className="text-sm text-muted-foreground">
-            Convert Daylight Factor into Overcast Daylight Autonomy — adjust the
-            parameters and pick a calculation mode.
-          </p>
+          <p className="text-sm text-muted-foreground">{t("calc.subtitle")}</p>
         </div>
 
         <div className="mt-6 grid gap-6 lg:grid-cols-[300px_1fr]">
@@ -51,10 +50,10 @@ export function Dashboard({ initialMode }: { initialMode?: CalculatorMode }) {
               onValueChange={(v) => setMode(v as CalculatorMode)}
             >
               <TabsList className="mb-5 grid w-full grid-cols-3 sm:max-w-md">
-                {TABS.map((t) => (
-                  <TabsTrigger key={t.value} value={t.value} className="gap-1.5">
-                    <t.icon className="size-4" />
-                    <span className="hidden sm:inline">{t.label}</span>
+                {tabs.map((tab) => (
+                  <TabsTrigger key={tab.value} value={tab.value} className="gap-1.5">
+                    <tab.icon className="size-4" />
+                    <span className="hidden sm:inline">{tab.label}</span>
                   </TabsTrigger>
                 ))}
               </TabsList>

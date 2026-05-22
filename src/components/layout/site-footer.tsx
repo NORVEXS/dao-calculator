@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Logo } from "@/components/brand/logo";
+import { useT } from "@/i18n/provider";
 
 const REFERENCES = [
   "Acosta, I.; Campano, M. A.; Domínguez-Amarillo, S.; Fernández-Agüera, J. (2019). Overcast Daylight Autonomy: A new concept to link daylight dynamic metrics with daylight factors. LEUKOS 15 (4), 254–269.",
@@ -8,6 +11,7 @@ const REFERENCES = [
 ];
 
 export function SiteFooter() {
+  const t = useT();
   return (
     <footer className="border-t border-border/60 bg-card/40">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -15,28 +19,26 @@ export function SiteFooter() {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              An open scientific tool to convert Daylight Factor into Overcast
-              Daylight Autonomy, faithful to the original University of Seville
-              method.
+              {t("footer.tagline")}
             </p>
             <div className="mt-4 flex gap-4 text-sm">
               <Link
                 href="/calculator"
                 className="text-muted-foreground transition-colors hover:text-foreground"
               >
-                Calculator
+                {t("footer.calculator")}
               </Link>
               <Link
                 href="/#science"
                 className="text-muted-foreground transition-colors hover:text-foreground"
               >
-                Method
+                {t("footer.method")}
               </Link>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold">Methodology &amp; references</h3>
+            <h3 className="text-sm font-semibold">{t("footer.referencesTitle")}</h3>
             <ul className="mt-4 space-y-3">
               {REFERENCES.map((r) => (
                 <li
@@ -51,11 +53,8 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-2 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
-          <p>
-            Calculation method © I. Acosta &amp; M. A. Campano, University of
-            Seville. Reimplemented for the web.
-          </p>
-          <p>Validated to 0.000% error against the reference workbook.</p>
+          <p>{t("footer.copyright")}</p>
+          <p>{t("footer.validated")}</p>
         </div>
       </div>
     </footer>

@@ -9,8 +9,10 @@ import { Separator } from "@/components/ui/separator";
 import { FieldRow, InfoLabel } from "./fields";
 import { useCalculatorStore } from "@/store/calculator-store";
 import { minutesToHHMM, hhmmToMinutes, firstSliderValue } from "@/lib/format";
+import { useT } from "@/i18n/provider";
 
 export function ParametersPanel() {
+  const t = useT();
   const params = useCalculatorStore((s) => s.params);
   const setParams = useCalculatorStore((s) => s.setParams);
   const resetParams = useCalculatorStore((s) => s.resetParams);
@@ -19,7 +21,7 @@ export function ParametersPanel() {
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <h2 className="font-heading text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-          Parameters
+          {t("params.title")}
         </h2>
         <Button
           variant="ghost"
@@ -28,16 +30,16 @@ export function ParametersPanel() {
           className="gap-1.5 text-muted-foreground"
         >
           <RotateCcw className="size-3" />
-          Reset
+          {t("params.reset")}
         </Button>
       </div>
 
       {/* Location */}
-      <Group icon={Globe2} title="Location">
+      <Group icon={Globe2} title={t("params.location")}>
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">
-            <InfoLabel hint="Site latitude in degrees. Drives the annual solar-elevation profile that feeds the overcast-sky illuminance.">
-              Latitude
+            <InfoLabel hint={t("params.latitudeHint")}>
+              {t("params.latitude")}
             </InfoLabel>
             <span className="font-mono text-sm tabular-nums">
               {params.latitude.toFixed(1)}°
@@ -52,10 +54,7 @@ export function ParametersPanel() {
           />
         </div>
 
-        <FieldRow
-          label="Longitude"
-          hint="Degrees east of Greenwich. Affects only the small solar-time correction."
-        >
+        <FieldRow label={t("params.longitude")} hint={t("params.longitudeHint")}>
           <NumberInput
             value={params.longitude}
             step={0.5}
@@ -64,10 +63,7 @@ export function ParametersPanel() {
           />
         </FieldRow>
 
-        <FieldRow
-          label="Time zone"
-          hint="Standard UTC offset in hours (e.g. +1 for Central European Time)."
-        >
+        <FieldRow label={t("params.timezone")} hint={t("params.timezoneHint")}>
           <NumberInput
             value={params.timeZone}
             step={1}
@@ -77,10 +73,7 @@ export function ParametersPanel() {
           />
         </FieldRow>
 
-        <FieldRow
-          label="Daylight saving"
-          hint="Apply the European summer-time shift when converting clock time to solar time."
-        >
+        <FieldRow label={t("params.dst")} hint={t("params.dstHint")}>
           <Switch
             checked={params.dstEnabled}
             onCheckedChange={(c) => setParams({ dstEnabled: c })}
@@ -91,32 +84,26 @@ export function ParametersPanel() {
       <Separator />
 
       {/* Schedule */}
-      <Group icon={Clock} title="Occupancy schedule">
-        <FieldRow label="Check-in" hint="Start of the occupied period (local clock time).">
+      <Group icon={Clock} title={t("params.schedule")}>
+        <FieldRow label={t("params.checkin")} hint={t("params.checkinHint")}>
           <TimeInput
             value={params.checkInMinutes}
             onChange={(v) => setParams({ checkInMinutes: v })}
           />
         </FieldRow>
-        <FieldRow label="Check-out" hint="End of the occupied period (exclusive).">
+        <FieldRow label={t("params.checkout")} hint={t("params.checkoutHint")}>
           <TimeInput
             value={params.checkOutMinutes}
             onChange={(v) => setParams({ checkOutMinutes: v })}
           />
         </FieldRow>
-        <FieldRow
-          label="Exclude weekends"
-          hint="Count only the 260 model weekdays, matching the reference workbook."
-        >
+        <FieldRow label={t("params.weekend")} hint={t("params.weekendHint")}>
           <Switch
             checked={params.weekendOut}
             onCheckedChange={(c) => setParams({ weekendOut: c })}
           />
         </FieldRow>
-        <FieldRow
-          label="Lunch break"
-          hint="Remove a daily non-occupied window (e.g. 11:00–12:00) from the metrics."
-        >
+        <FieldRow label={t("params.break")} hint={t("params.breakHint")}>
           <Switch
             checked={params.breakEnabled}
             onCheckedChange={(c) => setParams({ breakEnabled: c })}
@@ -125,14 +112,14 @@ export function ParametersPanel() {
         {params.breakEnabled && (
           <div className="grid grid-cols-2 gap-3 rounded-lg bg-muted/40 p-3">
             <div className="space-y-1.5">
-              <InfoLabel>Break start</InfoLabel>
+              <InfoLabel>{t("params.breakStart")}</InfoLabel>
               <TimeInput
                 value={params.breakInMinutes}
                 onChange={(v) => setParams({ breakInMinutes: v })}
               />
             </div>
             <div className="space-y-1.5">
-              <InfoLabel>Break end</InfoLabel>
+              <InfoLabel>{t("params.breakEnd")}</InfoLabel>
               <TimeInput
                 value={params.breakOutMinutes}
                 onChange={(v) => setParams({ breakOutMinutes: v })}
@@ -145,11 +132,8 @@ export function ParametersPanel() {
       <Separator />
 
       {/* Threshold */}
-      <Group icon={Target} title="Illuminance target">
-        <FieldRow
-          label="Threshold"
-          hint="Minimum illuminance considered 'enough daylight' (typically 300 lx)."
-        >
+      <Group icon={Target} title={t("params.target")}>
+        <FieldRow label={t("params.threshold")} hint={t("params.thresholdHint")}>
           <NumberInput
             value={params.thresholdLux}
             step={50}
