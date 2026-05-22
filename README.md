@@ -72,6 +72,8 @@ workbook ([`dao.test.ts`](src/lib/scientific/dao.test.ts)).
   occupancy schedule, lunch break, weekend exclusion and illuminance threshold,
   all with inline explanations.
 - **Export** — CSV for every mode and JSON for the matrix.
+- **Bilingual** — Spanish by default with an instant ES/EN switcher (preference
+  persisted, no page reload).
 - **Polish** — elegant dark/light themes, smooth micro‑animations, responsive
   layout, tabular figures and technical SEO.
 
