@@ -12,6 +12,25 @@ import { classifyDao } from "@/lib/colormap";
 import { firstSliderValue } from "@/lib/format";
 import { renderEmphasis, useT } from "@/i18n/provider";
 
+// Sampled points of the dashed solar arc (M0,400 Q600,-120 1200,400) so the
+// sun follows the exact curve smoothly at a constant pace, with a soft fade at
+// the entry/exit that also hides the loop seam.
+const SUN_TRAJECTORY = (() => {
+  const steps = 60;
+  const cx: number[] = [];
+  const cy: number[] = [];
+  const opacity: number[] = [];
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const mt = 1 - t;
+    cx.push(Math.round((2 * mt * t * 600 + t * t * 1200) * 10) / 10);
+    cy.push(Math.round((mt * mt * 400 + 2 * mt * t * -120 + t * t * 400) * 10) / 10);
+    const fade = t < 0.1 ? t / 0.1 : t > 0.9 ? (1 - t) / 0.1 : 1;
+    opacity.push(Math.round(fade * 100) / 100);
+  }
+  return { cx, cy, opacity };
+})();
+
 export function Hero() {
   const t = useT();
   const [df, setDf] = useState(3);
@@ -189,18 +208,19 @@ function HeroBackground() {
           strokeDasharray="3 7"
         />
         <motion.circle
-          r="6"
+          r="5.5"
           fill="var(--daylight)"
-          style={{ filter: "drop-shadow(0 0 12px var(--daylight))" }}
+          style={{ filter: "drop-shadow(0 0 14px var(--daylight))" }}
+          initial={{ opacity: 0 }}
           animate={{
-            cx: [0, 300, 600, 900, 1200],
-            cy: [400, 205, 140, 205, 400],
+            cx: SUN_TRAJECTORY.cx,
+            cy: SUN_TRAJECTORY.cy,
+            opacity: SUN_TRAJECTORY.opacity,
           }}
           transition={{
-            duration: 16,
+            duration: 15,
             repeat: Infinity,
-            ease: "easeInOut",
-            times: [0, 0.25, 0.5, 0.75, 1],
+            ease: "linear",
           }}
         />
       </svg>
