@@ -1,0 +1,207 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-violet: var(--violet);
+  --color-daylight: var(--daylight);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.991 0.004 240);
+  --foreground: oklch(0.21 0.03 250);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.03 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.03 250);
+
+  --primary: oklch(0.55 0.16 250);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --secondary: oklch(0.96 0.012 245);
+  --secondary-foreground: oklch(0.3 0.03 250);
+  --muted: oklch(0.965 0.008 245);
+  --muted-foreground: oklch(0.52 0.02 250);
+  --accent: oklch(0.95 0.03 230);
+  --accent-foreground: oklch(0.3 0.05 250);
+
+  --destructive: oklch(0.58 0.22 25);
+
+  --border: oklch(0.91 0.012 245);
+  --input: oklch(0.91 0.012 245);
+  --ring: oklch(0.62 0.14 235);
+
+  --brand: oklch(0.65 0.15 220);
+  --brand-foreground: oklch(0.99 0.005 240);
+  --violet: oklch(0.58 0.2 290);
+  --daylight: oklch(0.78 0.15 75);
+
+  /* Sequential daylight palette for charts (low → high). */
+  --chart-1: oklch(0.62 0.16 235);
+  --chart-2: oklch(0.6 0.18 200);
+  --chart-3: oklch(0.7 0.16 160);
+  --chart-4: oklch(0.78 0.15 110);
+  --chart-5: oklch(0.8 0.16 75);
+}
+
+.dark {
+  --background: oklch(0.17 0.022 256);
+  --foreground: oklch(0.94 0.01 240);
+
+  --card: oklch(0.21 0.025 256);
+  --card-foreground: oklch(0.94 0.01 240);
+  --popover: oklch(0.2 0.025 256);
+  --popover-foreground: oklch(0.94 0.01 240);
+
+  --primary: oklch(0.7 0.15 225);
+  --primary-foreground: oklch(0.16 0.03 256);
+  --secondary: oklch(0.27 0.03 256);
+  --secondary-foreground: oklch(0.94 0.01 240);
+  --muted: oklch(0.26 0.025 256);
+  --muted-foreground: oklch(0.68 0.025 245);
+  --accent: oklch(0.3 0.05 250);
+  --accent-foreground: oklch(0.95 0.01 240);
+
+  --destructive: oklch(0.66 0.2 25);
+
+  --border: oklch(0.32 0.025 256 / 60%);
+  --input: oklch(0.4 0.03 256 / 45%);
+  --ring: oklch(0.6 0.14 230);
+
+  --brand: oklch(0.72 0.14 215);
+  --brand-foreground: oklch(0.16 0.03 256);
+  --violet: oklch(0.68 0.18 290);
+  --daylight: oklch(0.82 0.15 80);
+
+  --chart-1: oklch(0.66 0.16 235);
+  --chart-2: oklch(0.68 0.16 200);
+  --chart-3: oklch(0.74 0.16 160);
+  --chart-4: oklch(0.82 0.15 110);
+  --chart-5: oklch(0.85 0.16 80);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  /* Tabular figures for all metric/number displays. */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      100deg,
+      var(--brand),
+      var(--violet) 55%,
+      var(--daylight)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Faint blueprint grid, theme-aware. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .bg-grid-fade {
+    -webkit-mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 35%, transparent 75%);
+    mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 35%, transparent 75%);
+  }
+
+  .glass {
+    background: color-mix(in oklab, var(--card) 70%, transparent);
+    backdrop-filter: blur(12px) saturate(140%);
+  }
+
+  .glow-brand {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--brand) 30%, transparent),
+      0 8px 40px -12px color-mix(in oklab, var(--brand) 55%, transparent);
+  }
+
+  .aurora {
+    background:
+      radial-gradient(40% 50% at 15% 10%, color-mix(in oklab, var(--brand) 35%, transparent), transparent 70%),
+      radial-gradient(40% 45% at 85% 5%, color-mix(in oklab, var(--violet) 30%, transparent), transparent 70%),
+      radial-gradient(45% 60% at 60% 90%, color-mix(in oklab, var(--daylight) 22%, transparent), transparent 70%);
+  }
+}
+
+/* Custom scrollbar for the lab aesthetic. */
+@layer base {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--muted-foreground) 30%, transparent);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--muted-foreground) 50%, transparent);
+    background-clip: content-box;
+  }
+}
