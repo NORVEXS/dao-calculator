@@ -16,6 +16,7 @@ import { SolarArcWidget } from "@/components/widgets/solar-arc";
 import { AnnualLightWidget } from "@/components/widgets/annual-light";
 import { RoomDepthWidget } from "@/components/widgets/room-depth";
 import { ScenarioCompareWidget } from "@/components/widgets/scenario-compare";
+import { Formula, Out, Var } from "@/components/scientific/formula";
 import { renderEmphasis, useT } from "@/i18n/provider";
 
 export function HowItWorks() {
@@ -87,7 +88,43 @@ export function ScienceSection() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1} className="mt-10">
+        <Reveal delay={0.06} className="mt-8">
+          <div className="grid gap-3 md:grid-cols-2">
+            <Formula label={t("science.chain1")} className="md:col-span-2">
+              <Var>δ</Var> = asin(0.4 · sin[(d − d₀) · 360 / 365.2422])
+            </Formula>
+            <Formula label={t("science.chain2")} className="md:col-span-2">
+              <Var>γ</Var> = asin(sin <Var>δ</Var> · sin <Var>φ</Var> + cos{" "}
+              <Var>δ</Var> · cos <Var>φ</Var> · cos <Var>H</Var>)
+            </Formula>
+            <Formula label={t("science.chain3")}>
+              <Out>
+                E<sub>ext</sub>
+              </Out>{" "}
+              = (7/9) · π · (100 + 7580 · sin<sup>1.36</sup> <Var>γ</Var>)
+            </Formula>
+            <Formula label={t("science.chain4")}>
+              <Out>
+                E<sub>int</sub>
+              </Out>{" "}
+              ={" "}
+              <Out>
+                E<sub>ext</sub>
+              </Out>{" "}
+              · DF / 100
+            </Formula>
+            <Formula label={t("science.chain5")} className="md:col-span-2">
+              <Out>DAo</Out> = Σ[ E<sub>int</sub> ≥ E
+              <sub>t</sub> ] / N &nbsp;·&nbsp; <Out>DAo.con</Out> = ⟨ min(E
+              <sub>int</sub> / E<sub>t</sub>, 1) ⟩
+            </Formula>
+          </div>
+          <p className="mt-2.5 px-1 text-xs leading-relaxed text-muted-foreground">
+            {t("science.legend")}
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.1} className="mt-8">
           <SolarArcWidget />
         </Reveal>
         <Reveal delay={0.05} className="mt-5">
