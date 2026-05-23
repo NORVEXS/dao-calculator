@@ -12,23 +12,24 @@ import { classifyDao } from "@/lib/colormap";
 import { firstSliderValue } from "@/lib/format";
 import { renderEmphasis, useT } from "@/i18n/provider";
 
-// Sampled points of the dashed solar arc (M0,400 Q600,-120 1200,400) so the
-// sun follows the exact curve smoothly at a constant pace, with a soft fade at
-// the entry/exit that also hides the loop seam.
+// The sun follows the same parabola as the dashed arc — but as a fixed-size DOM
+// circle positioned in percent, so it stays perfectly round regardless of the
+// container's aspect ratio (an SVG circle under preserveAspectRatio="none" gets
+// squashed). x is linear in t; y = 92 − 280·t(1−t) matches the Bézier arc
+// `M0,92 Q50,-48 100,92`. Constant pace + soft fade hides the loop seam.
 const SUN_TRAJECTORY = (() => {
   const steps = 60;
-  const cx: number[] = [];
-  const cy: number[] = [];
+  const left: string[] = [];
+  const top: string[] = [];
   const opacity: number[] = [];
   for (let i = 0; i <= steps; i++) {
     const t = i / steps;
-    const mt = 1 - t;
-    cx.push(Math.round((2 * mt * t * 600 + t * t * 1200) * 10) / 10);
-    cy.push(Math.round((mt * mt * 400 + 2 * mt * t * -120 + t * t * 400) * 10) / 10);
-    const fade = t < 0.1 ? t / 0.1 : t > 0.9 ? (1 - t) / 0.1 : 1;
+    left.push(`${(t * 100).toFixed(2)}%`);
+    top.push(`${(92 - 280 * t * (1 - t)).toFixed(2)}%`);
+    const fade = t < 0.12 ? t / 0.12 : t > 0.88 ? (1 - t) / 0.12 : 1;
     opacity.push(Math.round(fade * 100) / 100);
   }
-  return { cx, cy, opacity };
+  return { left, top, opacity };
 })();
 
 export function Hero() {
@@ -154,46 +155,52 @@ function Stat({ value, label }: { value: string; label: string }) {
 
 function HeroBackground() {
   return (
-    <div className="pointer-events-none absolute inset-0 -z-10">
+    <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 aurora" />
       <div className="absolute inset-0 bg-grid bg-grid-fade opacity-35" />
-      {/* Arcing sun path */}
-      <svg
-        className="absolute inset-x-0 top-0 h-[420px] w-full opacity-50"
-        preserveAspectRatio="none"
-        viewBox="0 0 1200 420"
-      >
-        <defs>
-          <linearGradient id="arc" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="var(--brand)" stopOpacity="0" />
-            <stop offset="50%" stopColor="var(--daylight)" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="var(--violet)" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M0,400 Q600,-120 1200,400"
-          fill="none"
-          stroke="url(#arc)"
-          strokeWidth="1.5"
-          strokeDasharray="3 7"
-        />
-        <motion.circle
-          r="5.5"
-          fill="var(--daylight)"
-          style={{ filter: "drop-shadow(0 0 14px var(--daylight))" }}
+
+      {/* Solar path: dashed arc + a round sun that never gets squashed. */}
+      <div className="absolute inset-x-0 top-0 h-[460px]">
+        <svg
+          className="absolute inset-0 h-full w-full opacity-60"
+          preserveAspectRatio="none"
+          viewBox="0 0 100 100"
+        >
+          <defs>
+            <linearGradient id="arc" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="var(--brand)" stopOpacity="0" />
+              <stop offset="50%" stopColor="var(--daylight)" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="var(--violet)" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,92 Q50,-48 100,92"
+            fill="none"
+            stroke="url(#arc)"
+            strokeWidth="1.4"
+            strokeDasharray="4 9"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+
+        <motion.div
+          className="absolute size-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 36% 30%, #ffffff, var(--daylight) 46%, color-mix(in oklab, var(--daylight) 60%, transparent) 100%)",
+            boxShadow:
+              "0 0 20px 5px color-mix(in oklab, var(--daylight) 50%, transparent), 0 0 6px 1px color-mix(in oklab, var(--daylight) 70%, transparent)",
+          }}
           initial={{ opacity: 0 }}
           animate={{
-            cx: SUN_TRAJECTORY.cx,
-            cy: SUN_TRAJECTORY.cy,
+            left: SUN_TRAJECTORY.left,
+            top: SUN_TRAJECTORY.top,
             opacity: SUN_TRAJECTORY.opacity,
           }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
+          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
         />
-      </svg>
+      </div>
     </div>
   );
 }
