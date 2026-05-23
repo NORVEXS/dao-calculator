@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { Hero } from "@/components/landing/hero";
 import {
   CtaSection,
+  ExploreSection,
   HowItWorks,
   MetricsSection,
   ScienceSection,
@@ -17,6 +18,7 @@ export default function Home() {
         <HowItWorks />
         <ScienceSection />
         <MetricsSection />
+        <ExploreSection />
         <CtaSection />
       </main>
       <SiteFooter />

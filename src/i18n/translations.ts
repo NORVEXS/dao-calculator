@@ -206,6 +206,48 @@ export const translations = {
     chart: {
       dfAxis: "Factor de Luz Diurna (%)",
     },
+    widgets: {
+      solar: {
+        title: "Trayectoria solar y luz disponible",
+        time: "Hora",
+        elevation: "Elevación solar",
+        extIll: "Luz exterior",
+        day: "Día del año",
+        latitude: "Latitud",
+        note: "Elevación máxima del día: {peak}°. Cuanto más alto está el sol, más iluminancia aporta el cielo cubierto — y mayor es el DAo.",
+      },
+      annual: {
+        title: "Calendario anual de luz",
+        subtitle:
+          "Iluminancia exterior de cielo cubierto a lo largo del año y del día. Ajusta la latitud para ver el efecto.",
+        hover: "{date} a las {time}: {value} lx",
+        hint: "Pasa el ratón por el mapa para leer la luz exterior en cada momento.",
+      },
+      depth: {
+        title: "Cómo cae la luz con la profundidad",
+        subtitle:
+          "El DF — y con él el DAo — disminuye al alejarse de la ventana. Cada círculo es el DAo en ese punto.",
+        window: "Ventana",
+        back: "Fondo de la sala",
+        windowDf: "DF junto a la ventana",
+        roomDepth: "Profundidad de la sala",
+        note: "Modelo ilustrativo del decaimiento del DF con la profundidad; cada punto convierte su DF en DAo con el motor real.",
+      },
+      compare: {
+        title: "Compara dos escenarios",
+        subtitle:
+          "Cambia DF, latitud y umbral en cada columna y compara su DAo al instante.",
+        delta: "Diferencia:",
+        deltaTail: "de DAo",
+        scenario: "Escenario",
+      },
+    },
+    explore: {
+      eyebrow: "Explóralo",
+      title: "Llévalo a tu espacio",
+      subtitle:
+        "Juega con la profundidad de la sala y compara escenarios de proyecto, todo con el motor de cálculo real.",
+    },
     common: {
       autonomy: "autonomía",
       continuous: "continua",
@@ -409,6 +451,48 @@ export const translations = {
     },
     chart: {
       dfAxis: "Daylight Factor (%)",
+    },
+    widgets: {
+      solar: {
+        title: "Solar path & available light",
+        time: "Time",
+        elevation: "Solar elevation",
+        extIll: "Exterior light",
+        day: "Day of year",
+        latitude: "Latitude",
+        note: "Peak elevation today: {peak}°. The higher the sun climbs, the more overcast-sky illuminance there is — and the higher the DAo.",
+      },
+      annual: {
+        title: "Annual light calendar",
+        subtitle:
+          "Overcast-sky exterior illuminance across the year and the day. Adjust the latitude to see the effect.",
+        hover: "{date} at {time}: {value} lx",
+        hint: "Hover the map to read the exterior light at any moment.",
+      },
+      depth: {
+        title: "How light falls with depth",
+        subtitle:
+          "DF — and with it DAo — drops as you move away from the window. Each circle is the DAo at that point.",
+        window: "Window",
+        back: "Room back",
+        windowDf: "DF at the window",
+        roomDepth: "Room depth",
+        note: "Illustrative model of DF decay with depth; each point converts its DF into DAo with the real engine.",
+      },
+      compare: {
+        title: "Compare two scenarios",
+        subtitle:
+          "Change DF, latitude and threshold in each column and compare their DAo instantly.",
+        delta: "Difference:",
+        deltaTail: "in DAo",
+        scenario: "Scenario",
+      },
+    },
+    explore: {
+      eyebrow: "Explore",
+      title: "Bring it to your space",
+      subtitle:
+        "Play with room depth and compare design scenarios — all driven by the real calculation engine.",
     },
     common: {
       autonomy: "autonomy",

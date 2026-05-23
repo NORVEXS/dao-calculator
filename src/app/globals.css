@@ -150,13 +150,9 @@
     letter-spacing: -0.02em;
   }
 
+  /* Restrained two-stop accent (cool daylight → warm), no rainbow. */
   .text-gradient {
-    background: linear-gradient(
-      100deg,
-      var(--brand),
-      var(--violet) 55%,
-      var(--daylight)
-    );
+    background: linear-gradient(94deg, var(--brand), var(--daylight) 92%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -180,15 +176,16 @@
   }
 
   .glow-brand {
-    box-shadow: 0 0 0 1px color-mix(in oklab, var(--brand) 30%, transparent),
-      0 8px 40px -12px color-mix(in oklab, var(--brand) 55%, transparent);
+    box-shadow: 0 1px 0 0 color-mix(in oklab, var(--brand) 14%, transparent),
+      0 18px 50px -28px color-mix(in oklab, var(--foreground) 40%, transparent);
   }
 
+  /* Subtle, single cool wash — far less of the rainbow-blob "AI" look. */
   .aurora {
     background:
-      radial-gradient(40% 50% at 15% 10%, color-mix(in oklab, var(--brand) 35%, transparent), transparent 70%),
-      radial-gradient(40% 45% at 85% 5%, color-mix(in oklab, var(--violet) 30%, transparent), transparent 70%),
-      radial-gradient(45% 60% at 60% 90%, color-mix(in oklab, var(--daylight) 22%, transparent), transparent 70%);
+      radial-gradient(48% 56% at 14% 4%, color-mix(in oklab, var(--brand) 16%, transparent), transparent 72%),
+      radial-gradient(42% 50% at 90% 2%, color-mix(in oklab, var(--violet) 9%, transparent), transparent 74%),
+      radial-gradient(55% 60% at 68% 96%, color-mix(in oklab, var(--daylight) 10%, transparent), transparent 76%);
   }
 }
 

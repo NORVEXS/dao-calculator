@@ -12,7 +12,10 @@ import {
 } from "lucide-react";
 import { Reveal } from "./reveal";
 import { Button } from "@/components/ui/button";
-import { daylightGradient } from "@/lib/colormap";
+import { SolarArcWidget } from "@/components/widgets/solar-arc";
+import { AnnualLightWidget } from "@/components/widgets/annual-light";
+import { RoomDepthWidget } from "@/components/widgets/room-depth";
+import { ScenarioCompareWidget } from "@/components/widgets/scenario-compare";
 import { renderEmphasis, useT } from "@/i18n/provider";
 
 export function HowItWorks() {
@@ -59,64 +62,60 @@ export function HowItWorks() {
 
 export function ScienceSection() {
   const t = useT();
-  const chain = [
-    { label: t("science.chain1"), detail: t("science.chain1d") },
-    { label: t("science.chain2"), detail: t("science.chain2d") },
-    { label: t("science.chain3"), detail: t("science.chain3d") },
-    { label: t("science.chain4"), detail: t("science.chain4d") },
-    { label: t("science.chain5"), detail: t("science.chain5d") },
-  ];
-
   return (
     <section
       id="science"
       className="relative scroll-mt-20 overflow-hidden border-y border-border/60 bg-card/30"
     >
-      <div className="absolute inset-0 -z-10 bg-grid opacity-40" />
+      <div className="absolute inset-0 -z-10 bg-grid opacity-25" />
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <Reveal>
-            <SectionEyebrow>{t("science.eyebrow")}</SectionEyebrow>
-            <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              {t("science.title")}
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              {renderEmphasis(t("science.subtitle"))}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link href="/calculator">{t("science.tryNow")}</Link>
-              </Button>
-              <span className="inline-flex items-center rounded-lg border border-border/70 bg-background/60 px-3 py-2 text-xs text-muted-foreground">
-                {t("science.skyNote")}
-              </span>
-            </div>
-          </Reveal>
+        <Reveal className="max-w-2xl">
+          <SectionEyebrow>{t("science.eyebrow")}</SectionEyebrow>
+          <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+            {t("science.title")}
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            {renderEmphasis(t("science.subtitle"))}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button asChild>
+              <Link href="/calculator">{t("science.tryNow")}</Link>
+            </Button>
+            <span className="inline-flex items-center rounded-lg border border-border/70 bg-background/60 px-3 py-2 text-xs text-muted-foreground">
+              {t("science.skyNote")}
+            </span>
+          </div>
+        </Reveal>
 
-          <Reveal delay={0.1}>
-            <ol className="relative space-y-3">
-              {chain.map((c, i) => (
-                <li
-                  key={c.label}
-                  className="flex items-start gap-4 rounded-xl border border-border/70 bg-background/60 p-4"
-                >
-                  <span
-                    className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-background"
-                    style={{ background: daylightGradient("135deg") }}
-                  >
-                    {i + 1}
-                  </span>
-                  <div>
-                    <p className="font-medium">{c.label}</p>
-                    <p className="font-mono text-xs text-muted-foreground">
-                      {c.detail}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-        </div>
+        <Reveal delay={0.1} className="mt-10">
+          <SolarArcWidget />
+        </Reveal>
+        <Reveal delay={0.05} className="mt-5">
+          <AnnualLightWidget />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function ExploreSection() {
+  const t = useT();
+  return (
+    <section className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
+      <Reveal className="max-w-2xl">
+        <SectionEyebrow>{t("explore.eyebrow")}</SectionEyebrow>
+        <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+          {t("explore.title")}
+        </h2>
+        <p className="mt-4 text-muted-foreground">{t("explore.subtitle")}</p>
+      </Reveal>
+      <div className="mt-10 space-y-5">
+        <Reveal>
+          <RoomDepthWidget />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <ScenarioCompareWidget />
+        </Reveal>
       </div>
     </section>
   );

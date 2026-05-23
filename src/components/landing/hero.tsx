@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Sun } from "lucide-react";
+import { ArrowRight, Sun } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -48,43 +48,23 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:pb-28 lg:pt-24">
         <div className="flex flex-col justify-center">
           <div className="flex min-h-[2.75rem] items-start sm:min-h-0">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur"
-            >
-              <Sparkles className="size-3.5 shrink-0 text-[var(--daylight)]" />
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-1 text-xs font-medium text-muted-foreground">
+              <span className="size-1.5 shrink-0 rounded-full bg-[var(--daylight)]" />
               {t("hero.badge")}
-            </motion.div>
+            </div>
           </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.05 }}
-            className="font-heading mt-5 min-h-[12rem] text-4xl font-bold leading-[1.05] tracking-tight sm:min-h-[13rem] sm:text-5xl lg:min-h-[20rem] lg:text-6xl"
-          >
+          <h1 className="font-heading mt-5 min-h-[12rem] text-4xl font-bold leading-[1.05] tracking-tight sm:min-h-[13rem] sm:text-5xl lg:min-h-[20rem] lg:text-6xl">
             {t("hero.titlePre")}
             <span className="text-gradient">{t("hero.titleHighlight")}</span>
             {t("hero.titlePost")}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.12 }}
-            className="mt-5 min-h-[8.5rem] max-w-xl text-base leading-relaxed text-muted-foreground sm:min-h-[5.5rem] sm:text-lg"
-          >
+          <p className="mt-5 min-h-[8.5rem] max-w-xl text-base leading-relaxed text-muted-foreground sm:min-h-[5.5rem] sm:text-lg">
             {renderEmphasis(t("hero.subtitle"))}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.18 }}
-            className="mt-8 flex flex-wrap items-center gap-3"
-          >
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button asChild size="lg" className="gap-2">
               <Link href="/calculator">
                 {t("hero.ctaOpen")}
@@ -94,27 +74,17 @@ export function Hero() {
             <Button asChild size="lg" variant="outline">
               <Link href="/#science">{t("hero.ctaMethod")}</Link>
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.dl
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-10 grid max-w-md grid-cols-3 gap-6"
-          >
+          <dl className="mt-10 grid max-w-md grid-cols-3 gap-6">
             <Stat value="3" label={t("hero.statModes")} />
             <Stat value="365×32" label={t("hero.statSamples")} />
             <Stat value="0.00%" label={t("hero.statError")} />
-          </motion.dl>
+          </dl>
         </div>
 
         {/* Live mini-demo */}
-        <motion.div
-          initial={{ opacity: 0, y: 24, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="relative flex items-center"
-        >
+        <div className="relative flex items-center">
           <div className="glass glow-brand w-full rounded-2xl border border-border/70 p-6 sm:p-8">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm font-medium">
@@ -163,7 +133,7 @@ export function Hero() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -185,8 +155,8 @@ function Stat({ value, label }: { value: string; label: string }) {
 function HeroBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 -z-10">
-      <div className="absolute inset-0 aurora opacity-70" />
-      <div className="absolute inset-0 bg-grid bg-grid-fade opacity-60" />
+      <div className="absolute inset-0 aurora" />
+      <div className="absolute inset-0 bg-grid bg-grid-fade opacity-35" />
       {/* Arcing sun path */}
       <svg
         className="absolute inset-x-0 top-0 h-[420px] w-full opacity-50"
