@@ -14,6 +14,16 @@ import { useT } from "@/i18n/provider";
 
 const POINTS = 7;
 
+/**
+ * Exponential decay of the Daylight Factor with ABSOLUTE distance from the
+ * window, per metre. ≈0.45/m means DF roughly halves every 1.5 m, so daylight
+ * fades out around 5 m of depth — consistent with the side-lit rule of thumb
+ * that effective daylight reaches about 2–2.5× the window-head height. Using
+ * absolute distance (not distance/depth) is what makes a deeper room genuinely
+ * darker at the back.
+ */
+const DEPTH_DECAY_PER_M = 0.45;
+
 export function RoomDepthWidget() {
   const t = useT();
   const [windowDf, setWindowDf] = useState(5);
@@ -24,8 +34,9 @@ export function RoomDepthWidget() {
   const points = useMemo(() => {
     return Array.from({ length: POINTS }, (_, i) => {
       const d = ((i + 0.5) / POINTS) * depth;
-      // Daylight Factor decays with depth from the window.
-      const df = windowDf * Math.exp((-2.1 * d) / depth);
+      // DF decays with the point's absolute distance from the window, so the
+      // back of a deeper room receives genuinely less daylight.
+      const df = windowDf * Math.exp(-DEPTH_DECAY_PER_M * d);
       const { dao, daoCon } = computeDao(profile, df, DEFAULT_PARAMETERS.thresholdLux);
       return { d, df, dao, daoCon };
     });
