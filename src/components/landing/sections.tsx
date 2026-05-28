@@ -66,7 +66,7 @@ export function ScienceSection() {
     >
       <div className="absolute inset-0 -z-10 bg-grid opacity-[0.18]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-48 aurora opacity-60" />
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-28">
         <SectionMark index="02" label={t("science.eyebrow")} />
 
         <Reveal className="mt-10 max-w-2xl">
@@ -137,15 +137,19 @@ export function ScienceSection() {
 export function ExploreSection() {
   const t = useT();
   return (
-    <section className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
-      <SectionMark index="04" label={t("explore.eyebrow")} />
-      <Reveal className="mt-10 max-w-2xl">
-        <h2 className="font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+    <section className="mx-auto max-w-7xl scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8">
+      <Reveal className="max-w-3xl">
+        <span className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-[var(--daylight)]">
+          {t("explore.eyebrow")}
+        </span>
+        <h2 className="font-heading mt-3 text-4xl font-bold tracking-tight text-balance sm:text-5xl">
           {t("explore.title")}
         </h2>
-        <p className="mt-4 text-muted-foreground text-pretty">{t("explore.subtitle")}</p>
+        <p className="mt-4 max-w-xl text-muted-foreground text-pretty sm:text-lg">
+          {t("explore.subtitle")}
+        </p>
       </Reveal>
-      <div className="mt-10 space-y-5">
+      <div className="mt-12 space-y-5">
         <Reveal>
           <RoomDepthWidget />
         </Reveal>
@@ -183,10 +187,17 @@ export function MetricsSection() {
   ];
 
   return (
-    <section id="metrics" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
-      <SectionMark index="03" label={t("metrics.eyebrow")} />
-      <Reveal className="mt-10 max-w-2xl">
-        <h2 className="font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+    <section id="metrics" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8">
+      <Reveal className="mx-auto max-w-2xl text-center">
+        <div className="flex items-center justify-center gap-2.5">
+          <span className="text-glow font-mono text-sm font-medium tabular-nums text-[var(--daylight)]">
+            03
+          </span>
+          <span className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+            {t("metrics.eyebrow")}
+          </span>
+        </div>
+        <h2 className="font-heading mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
           {t("metrics.title")}
         </h2>
       </Reveal>
