@@ -1,15 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  CloudSun,
-  Grid3x3,
-  LineChart,
-  MoveVertical,
-  Ruler,
-  Target,
-  TrendingUp,
-} from "lucide-react";
+import { Grid3x3, MoveVertical, Target } from "lucide-react";
 import { Reveal } from "./reveal";
 import { Button } from "@/components/ui/button";
 import { SolarArcWidget } from "@/components/widgets/solar-arc";
@@ -22,40 +14,44 @@ import { renderEmphasis, useT } from "@/i18n/provider";
 export function HowItWorks() {
   const t = useT();
   const steps = [
-    { icon: Ruler, title: t("how.step1Title"), body: t("how.step1Body") },
-    { icon: CloudSun, title: t("how.step2Title"), body: t("how.step2Body") },
-    { icon: Target, title: t("how.step3Title"), body: t("how.step3Body") },
+    { title: t("how.step1Title"), body: t("how.step1Body") },
+    { title: t("how.step2Title"), body: t("how.step2Body") },
+    { title: t("how.step3Title"), body: t("how.step3Body") },
   ];
 
   return (
     <section id="how" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
-      <Reveal className="max-w-2xl">
-        <SectionEyebrow>{t("how.eyebrow")}</SectionEyebrow>
-        <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-          {t("how.title")}
-        </h2>
-        <p className="mt-4 text-muted-foreground">{t("how.subtitle")}</p>
-      </Reveal>
+      <SectionMark index="01" label={t("how.eyebrow")} />
 
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {steps.map((s, i) => (
-          <Reveal key={s.title} delay={i * 0.08}>
-            <div className="group h-full rounded-2xl border border-border/70 bg-card/60 p-6 transition-colors hover:border-[var(--brand)]/50">
-              <div className="flex size-11 items-center justify-center rounded-xl bg-secondary text-[var(--brand)]">
-                <s.icon className="size-5" />
-              </div>
-              <div className="mt-4 flex items-center gap-2">
-                <span className="font-mono text-xs text-muted-foreground">
-                  0{i + 1}
+      <div className="mt-10 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        <Reveal>
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+            {t("how.title")}
+          </h2>
+          <p className="mt-4 max-w-md text-muted-foreground text-pretty">
+            {t("how.subtitle")}
+          </p>
+        </Reveal>
+
+        <ol className="lg:border-l lg:border-border/60 lg:pl-12">
+          {steps.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.08}>
+              <li className="group grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 border-b border-border/45 py-6 first:pt-0 last:border-b-0 last:pb-0">
+                <span className="font-mono text-2xl font-medium tabular-nums text-muted-foreground/45 transition-colors duration-300 group-hover:text-[var(--daylight)]">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="font-heading text-lg font-semibold">{s.title}</h3>
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {s.body}
-              </p>
-            </div>
-          </Reveal>
-        ))}
+                <div>
+                  <h3 className="font-heading pt-1 text-lg font-semibold">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground text-pretty">
+                    {s.body}
+                  </p>
+                </div>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
       </div>
     </section>
   );
@@ -66,23 +62,25 @@ export function ScienceSection() {
   return (
     <section
       id="science"
-      className="relative scroll-mt-20 overflow-hidden border-y border-border/60 bg-card/30"
+      className="relative scroll-mt-20 overflow-hidden border-y border-border/60 bg-muted/30"
     >
-      <div className="absolute inset-0 -z-10 bg-grid opacity-25" />
+      <div className="absolute inset-0 -z-10 bg-grid opacity-[0.18]" />
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <Reveal className="max-w-2xl">
-          <SectionEyebrow>{t("science.eyebrow")}</SectionEyebrow>
-          <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+        <SectionMark index="02" label={t("science.eyebrow")} />
+
+        <Reveal className="mt-10 max-w-2xl">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             {t("science.title")}
           </h2>
-          <p className="mt-4 text-muted-foreground">
+          <p className="mt-4 text-muted-foreground text-pretty">
             {renderEmphasis(t("science.subtitle"))}
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             <Button asChild>
               <Link href="/calculator">{t("science.tryNow")}</Link>
             </Button>
-            <span className="inline-flex items-center rounded-lg border border-border/70 bg-background/60 px-3 py-2 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 font-mono text-xs text-muted-foreground">
+              <span className="size-1.5 rounded-full bg-[var(--daylight)]" />
               {t("science.skyNote")}
             </span>
           </div>
@@ -139,12 +137,12 @@ export function ExploreSection() {
   const t = useT();
   return (
     <section className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
-      <Reveal className="max-w-2xl">
-        <SectionEyebrow>{t("explore.eyebrow")}</SectionEyebrow>
-        <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+      <SectionMark index="04" label={t("explore.eyebrow")} />
+      <Reveal className="mt-10 max-w-2xl">
+        <h2 className="font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
           {t("explore.title")}
         </h2>
-        <p className="mt-4 text-muted-foreground">{t("explore.subtitle")}</p>
+        <p className="mt-4 text-muted-foreground text-pretty">{t("explore.subtitle")}</p>
       </Reveal>
       <div className="mt-10 space-y-5">
         <Reveal>
@@ -162,15 +160,15 @@ export function MetricsSection() {
   const t = useT();
   const cards = [
     {
-      icon: TrendingUp,
       tag: "DAo",
+      unit: "%",
       title: t("metrics.daoTitle"),
       body: t("metrics.daoBody"),
       example: t("metrics.daoExample"),
     },
     {
-      icon: LineChart,
       tag: "DAo.con",
+      unit: "0–1",
       title: t("metrics.conTitle"),
       body: t("metrics.conBody"),
       example: t("metrics.conExample"),
@@ -185,41 +183,42 @@ export function MetricsSection() {
 
   return (
     <section id="metrics" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
-      <Reveal className="max-w-2xl">
-        <SectionEyebrow>{t("metrics.eyebrow")}</SectionEyebrow>
-        <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+      <SectionMark index="03" label={t("metrics.eyebrow")} />
+      <Reveal className="mt-10 max-w-2xl">
+        <h2 className="font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
           {t("metrics.title")}
         </h2>
       </Reveal>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2">
-        {cards.map((c, i) => (
-          <Reveal key={c.tag} delay={i * 0.08}>
-            <div className="h-full rounded-2xl border border-border/70 bg-card/60 p-7">
-              <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-secondary text-[var(--brand)]">
-                  <c.icon className="size-5" />
-                </div>
-                <span className="font-mono text-sm font-semibold text-[var(--brand)]">
+      {/* Spec-sheet: two definitions split by a single hairline, no floating cards. */}
+      <Reveal delay={0.06}>
+        <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-border/70 bg-border/70 sm:grid-cols-2">
+          {cards.map((c) => (
+            <article key={c.tag} className="flex flex-col bg-card p-7">
+              <header className="flex items-baseline justify-between border-b border-dashed border-border pb-3">
+                <span className="font-mono text-base font-semibold tracking-tight text-foreground">
                   {c.tag}
                 </span>
-              </div>
-              <h3 className="font-heading mt-4 text-xl font-semibold">
+                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted-foreground">
+                  {c.unit}
+                </span>
+              </header>
+              <h3 className="font-heading mt-4 text-xl font-semibold text-pretty">
                 {c.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground text-pretty">
                 {c.body}
               </p>
-              <p className="mt-4 rounded-lg bg-secondary/60 px-3 py-2 text-xs text-secondary-foreground">
+              <p className="mt-5 border-l-2 border-[var(--daylight)]/55 bg-[var(--daylight)]/[0.06] py-2 pl-3 font-mono text-xs leading-relaxed text-foreground/80">
                 {c.example}
               </p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      </Reveal>
 
       <Reveal delay={0.1}>
-        <div className="mt-10 flex flex-col items-center justify-between gap-5 rounded-2xl border border-border/70 bg-card/60 p-7 sm:flex-row">
+        <div className="mt-8 flex flex-col items-start justify-between gap-5 border-t border-border/70 pt-7 sm:flex-row sm:items-center">
           <div>
             <h3 className="font-heading text-lg font-semibold">
               {t("metrics.modesTitle")}
@@ -232,7 +231,7 @@ export function MetricsSection() {
             {modes.map((m) => (
               <Button key={m.label} asChild variant="outline" className="gap-2">
                 <Link href={m.href}>
-                  <m.icon className="size-4" />
+                  <m.icon className="size-4 text-[var(--daylight)]" />
                   {m.label}
                 </Link>
               </Button>
@@ -249,12 +248,16 @@ export function CtaSection() {
   return (
     <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
       <Reveal>
-        <div className="glow-brand relative overflow-hidden rounded-3xl border border-border/70 bg-card/70 px-6 py-14 text-center sm:px-12">
-          <div className="absolute inset-0 -z-10 aurora opacity-60" />
-          <h2 className="font-heading mx-auto max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="glow-brand relative overflow-hidden rounded-2xl border border-border/70 bg-card px-6 py-16 text-center sm:px-12">
+          <div className="bg-grid bg-grid-fade absolute inset-0 -z-10 opacity-30" />
+          <span
+            aria-hidden
+            className="mx-auto mb-6 block size-3 rounded-full bg-[var(--daylight)] shadow-[0_0_24px_6px_color-mix(in_oklab,var(--daylight)_55%,transparent)]"
+          />
+          <h2 className="font-heading mx-auto max-w-2xl text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             {t("cta.title")}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground text-pretty">
             {t("cta.subtitle")}
           </p>
           <div className="mt-8">
@@ -268,10 +271,19 @@ export function CtaSection() {
   );
 }
 
-function SectionEyebrow({ children }: { children: React.ReactNode }) {
+/** Technical register line: amber mono index + label + trailing hairline. */
+function SectionMark({ index, label }: { index: string; label: string }) {
   return (
-    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand)]">
-      {children}
-    </span>
+    <Reveal>
+      <div className="flex items-center gap-4">
+        <span className="font-mono text-sm font-medium tabular-nums text-[var(--daylight)]">
+          {index}
+        </span>
+        <span className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+          {label}
+        </span>
+        <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
+      </div>
+    </Reveal>
   );
 }

@@ -57,7 +57,7 @@ export function Hero() {
 
           <h1 className="font-heading mt-5 min-h-[12rem] text-4xl font-bold leading-[1.05] tracking-tight sm:min-h-[13rem] sm:text-5xl lg:min-h-[20rem] lg:text-6xl">
             {t("hero.titlePre")}
-            <span className="text-gradient">{t("hero.titleHighlight")}</span>
+            <span className="mark-underline">{t("hero.titleHighlight")}</span>
             {t("hero.titlePost")}
           </h1>
 
@@ -84,7 +84,7 @@ export function Hero() {
           </dl>
         </div>
 
-        {/* Live mini-demo */}
+        {/* Interactive mini-demo */}
         <div className="relative flex items-center">
           <div className="glass glow-brand w-full rounded-2xl border border-border/70 p-6 sm:p-8">
             <div className="flex items-center justify-between">
@@ -168,9 +168,9 @@ function HeroBackground() {
         >
           <defs>
             <linearGradient id="arc" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="var(--brand)" stopOpacity="0" />
-              <stop offset="50%" stopColor="var(--daylight)" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="var(--violet)" stopOpacity="0" />
+              <stop offset="0%" stopColor="var(--daylight)" stopOpacity="0" />
+              <stop offset="50%" stopColor="var(--daylight)" stopOpacity="0.65" />
+              <stop offset="100%" stopColor="var(--daylight)" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path

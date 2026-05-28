@@ -5,7 +5,7 @@ import { Dashboard } from "@/components/calculator/dashboard";
 export const metadata: Metadata = {
   title: "Calculator",
   description:
-    "Convert Daylight Factor into DAo and DAo.con for single points, vertical sections and plan matrices, with live heatmaps and response curves.",
+    "Convert Daylight Factor into DAo and DAo.con for single points, vertical sections and plan matrices, with interactive heatmaps and response curves.",
 };
 
 export default function CalculatorPage() {

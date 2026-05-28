@@ -1,6 +1,9 @@
 import { cn } from "@/lib/utils";
 
-/** Compact mark: a sun/aperture glyph evoking daylight measurement. */
+/**
+ * Compact mark: a sun/aperture glyph. Duotone — an ink aperture ring (inherits
+ * the text colour) around a glowing daylight core, no rainbow gradient.
+ */
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg
@@ -8,22 +11,16 @@ export function LogoMark({ className }: { className?: string }) {
       className={cn("size-7", className)}
       aria-hidden="true"
     >
-      <defs>
-        <linearGradient id="daoLogo" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="var(--brand)" />
-          <stop offset="55%" stopColor="var(--violet)" />
-          <stop offset="100%" stopColor="var(--daylight)" />
-        </linearGradient>
-      </defs>
       <circle
         cx="16"
         cy="16"
         r="13"
         fill="none"
-        stroke="url(#daoLogo)"
-        strokeWidth="2"
+        stroke="currentColor"
+        strokeOpacity="0.85"
+        strokeWidth="1.6"
       />
-      <circle cx="16" cy="16" r="5.5" fill="url(#daoLogo)" />
+      <circle cx="16" cy="16" r="5.25" fill="var(--daylight)" />
       {Array.from({ length: 8 }).map((_, i) => {
         const a = (i * Math.PI) / 4;
         const x1 = 16 + Math.cos(a) * 8.5;
@@ -37,7 +34,7 @@ export function LogoMark({ className }: { className?: string }) {
             y1={y1}
             x2={x2}
             y2={y2}
-            stroke="url(#daoLogo)"
+            stroke="var(--daylight)"
             strokeWidth="2"
             strokeLinecap="round"
           />

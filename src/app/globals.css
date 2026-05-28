@@ -47,35 +47,38 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.625rem;
 
-  --background: oklch(0.991 0.004 240);
-  --foreground: oklch(0.21 0.03 250);
+  /* Warm "paper & ink" base — no cool-blue tint on the neutrals. */
+  --background: oklch(0.986 0.006 85);
+  --foreground: oklch(0.235 0.014 72);
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.21 0.03 250);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.21 0.03 250);
+  --card: oklch(0.998 0.003 90);
+  --card-foreground: oklch(0.235 0.014 72);
+  --popover: oklch(0.998 0.003 90);
+  --popover-foreground: oklch(0.235 0.014 72);
 
-  --primary: oklch(0.55 0.16 250);
-  --primary-foreground: oklch(0.99 0.005 240);
-  --secondary: oklch(0.96 0.012 245);
-  --secondary-foreground: oklch(0.3 0.03 250);
-  --muted: oklch(0.965 0.008 245);
-  --muted-foreground: oklch(0.41 0.03 256);
-  --accent: oklch(0.95 0.03 230);
-  --accent-foreground: oklch(0.3 0.05 250);
+  /* Signature accent: daylight ochre (drives buttons, rings, highlights). */
+  --primary: oklch(0.705 0.13 68);
+  --primary-foreground: oklch(0.22 0.025 60);
+  --secondary: oklch(0.952 0.009 82);
+  --secondary-foreground: oklch(0.32 0.018 72);
+  --muted: oklch(0.955 0.008 82);
+  --muted-foreground: oklch(0.475 0.018 72);
+  --accent: oklch(0.93 0.026 78);
+  --accent-foreground: oklch(0.3 0.025 65);
 
-  --destructive: oklch(0.58 0.22 25);
+  --destructive: oklch(0.55 0.2 27);
 
-  --border: oklch(0.91 0.012 245);
-  --input: oklch(0.91 0.012 245);
-  --ring: oklch(0.62 0.14 235);
+  --border: oklch(0.9 0.009 82);
+  --input: oklch(0.9 0.009 82);
+  --ring: oklch(0.705 0.13 68);
 
-  --brand: oklch(0.65 0.15 220);
-  --brand-foreground: oklch(0.99 0.005 240);
-  --violet: oklch(0.58 0.2 290);
-  --daylight: oklch(0.78 0.15 75);
+  /* Refined desaturated steel — reserved for data / equation inputs. */
+  --brand: oklch(0.5 0.07 248);
+  --brand-foreground: oklch(0.99 0.004 90);
+  --violet: oklch(0.55 0.13 280);
+  --daylight: oklch(0.7 0.135 72);
 
   /* Sequential daylight palette for charts (low → high). */
   --chart-1: oklch(0.62 0.16 235);
@@ -86,33 +89,35 @@
 }
 
 .dark {
-  --background: oklch(0.17 0.022 256);
-  --foreground: oklch(0.94 0.01 240);
+  /* Near-neutral deep charcoal — the cool-navy chroma is dialed right down so
+     it reads as graphite/ink, not "AI navy". */
+  --background: oklch(0.172 0.007 250);
+  --foreground: oklch(0.93 0.008 85);
 
-  --card: oklch(0.21 0.025 256);
-  --card-foreground: oklch(0.94 0.01 240);
-  --popover: oklch(0.2 0.025 256);
-  --popover-foreground: oklch(0.94 0.01 240);
+  --card: oklch(0.207 0.008 250);
+  --card-foreground: oklch(0.93 0.008 85);
+  --popover: oklch(0.2 0.008 250);
+  --popover-foreground: oklch(0.93 0.008 85);
 
-  --primary: oklch(0.7 0.15 225);
-  --primary-foreground: oklch(0.16 0.03 256);
-  --secondary: oklch(0.27 0.03 256);
-  --secondary-foreground: oklch(0.94 0.01 240);
-  --muted: oklch(0.26 0.025 256);
-  --muted-foreground: oklch(0.76 0.028 245);
-  --accent: oklch(0.3 0.05 250);
-  --accent-foreground: oklch(0.95 0.01 240);
+  --primary: oklch(0.785 0.135 75);
+  --primary-foreground: oklch(0.19 0.022 60);
+  --secondary: oklch(0.268 0.008 250);
+  --secondary-foreground: oklch(0.93 0.008 85);
+  --muted: oklch(0.255 0.007 250);
+  --muted-foreground: oklch(0.745 0.012 80);
+  --accent: oklch(0.3 0.018 78);
+  --accent-foreground: oklch(0.95 0.01 85);
 
   --destructive: oklch(0.66 0.2 25);
 
-  --border: oklch(0.32 0.025 256 / 60%);
-  --input: oklch(0.4 0.03 256 / 45%);
-  --ring: oklch(0.6 0.14 230);
+  --border: oklch(0.34 0.01 250 / 58%);
+  --input: oklch(0.42 0.012 250 / 45%);
+  --ring: oklch(0.72 0.13 75);
 
-  --brand: oklch(0.72 0.14 215);
-  --brand-foreground: oklch(0.16 0.03 256);
-  --violet: oklch(0.68 0.18 290);
-  --daylight: oklch(0.82 0.15 80);
+  --brand: oklch(0.63 0.085 242);
+  --brand-foreground: oklch(0.17 0.02 250);
+  --violet: oklch(0.66 0.14 282);
+  --daylight: oklch(0.82 0.15 82);
 
   --chart-1: oklch(0.66 0.16 235);
   --chart-2: oklch(0.68 0.16 200);
@@ -131,7 +136,7 @@
     -webkit-font-smoothing: antialiased;
   }
   ::selection {
-    background: color-mix(in oklab, var(--brand) 28%, transparent);
+    background: color-mix(in oklab, var(--daylight) 32%, transparent);
     color: var(--foreground);
   }
   html {
@@ -150,12 +155,17 @@
     letter-spacing: -0.02em;
   }
 
-  /* Restrained two-stop accent (cool daylight → warm), no rainbow. */
-  .text-gradient {
-    background: linear-gradient(94deg, var(--brand), var(--daylight) 92%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  /* Hand-marked highlighter swipe under a key term — wraps per line. */
+  .mark-underline {
+    background-image: linear-gradient(
+      color-mix(in oklab, var(--daylight) 36%, transparent),
+      color-mix(in oklab, var(--daylight) 36%, transparent)
+    );
+    background-repeat: no-repeat;
+    background-position: 0 90%;
+    background-size: 100% 0.3em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   /* Faint blueprint grid, theme-aware. */
@@ -171,21 +181,37 @@
   }
 
   .glass {
-    background: color-mix(in oklab, var(--card) 70%, transparent);
-    backdrop-filter: blur(12px) saturate(140%);
+    background: color-mix(in oklab, var(--card) 72%, transparent);
+    backdrop-filter: blur(12px) saturate(125%);
   }
 
+  /* Warm-tinted elevation, single light source from above. */
   .glow-brand {
-    box-shadow: 0 1px 0 0 color-mix(in oklab, var(--brand) 14%, transparent),
-      0 18px 50px -28px color-mix(in oklab, var(--foreground) 40%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 color-mix(in oklab, var(--daylight) 12%, transparent),
+      0 1px 2px 0 color-mix(in oklab, oklch(0.2 0.03 60) 18%, transparent),
+      0 24px 60px -34px color-mix(in oklab, oklch(0.2 0.03 60) 55%, transparent);
   }
 
-  /* Subtle, single cool wash — far less of the rainbow-blob "AI" look. */
+  /* One restrained warm wash from the top — the sun, not a rainbow blob. */
   .aurora {
     background:
-      radial-gradient(48% 56% at 14% 4%, color-mix(in oklab, var(--brand) 16%, transparent), transparent 72%),
-      radial-gradient(42% 50% at 90% 2%, color-mix(in oklab, var(--violet) 9%, transparent), transparent 74%),
-      radial-gradient(55% 60% at 68% 96%, color-mix(in oklab, var(--daylight) 10%, transparent), transparent 76%);
+      radial-gradient(60% 46% at 50% -8%, color-mix(in oklab, var(--daylight) 16%, transparent), transparent 70%),
+      radial-gradient(40% 34% at 88% 0%, color-mix(in oklab, var(--brand) 7%, transparent), transparent 72%);
+  }
+
+  /* Fixed film-grain overlay to break digital flatness. */
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .dark .grain::before {
+    opacity: 0.05;
   }
 }
 

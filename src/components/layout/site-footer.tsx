@@ -38,17 +38,22 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold">{t("footer.referencesTitle")}</h3>
-            <ul className="mt-4 space-y-3">
-              {REFERENCES.map((r) => (
+            <h3 className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+              {t("footer.referencesTitle")}
+            </h3>
+            <ol className="mt-4 space-y-3">
+              {REFERENCES.map((r, i) => (
                 <li
                   key={r}
-                  className="text-xs leading-relaxed text-muted-foreground"
+                  className="grid grid-cols-[auto_1fr] gap-3 text-xs leading-relaxed text-muted-foreground"
                 >
-                  {r}
+                  <span className="font-mono text-[var(--daylight)] tabular-nums">
+                    [{i + 1}]
+                  </span>
+                  <span>{r}</span>
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
         </div>
 
