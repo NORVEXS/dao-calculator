@@ -32,6 +32,7 @@ export const translations = {
       statError: "Error frente a la referencia",
       liveConversion: "Conversión interactiva",
       daylightFactor: "Factor de Luz Diurna",
+      scroll: "Desliza",
       demoNote:
         "Calculado para 37° de latitud, jornada de 08:00 a 17:00 y un objetivo de 300 lx. Todo se puede ajustar dentro de la calculadora.",
     },
@@ -290,6 +291,7 @@ export const translations = {
       statError: "Error vs. reference",
       liveConversion: "Interactive conversion",
       daylightFactor: "Daylight Factor",
+      scroll: "Scroll",
       demoNote:
         "Computed for latitude 37°, an 08:00–17:00 schedule and a 300 lx target. Everything is adjustable inside the calculator.",
     },
