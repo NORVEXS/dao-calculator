@@ -6,12 +6,12 @@ export function firstSliderValue(v: number | readonly number[]): number {
 }
 
 export function formatPercent(value: number, digits = 1): string {
-  if (!Number.isFinite(value)) return "—";
+  if (!Number.isFinite(value)) return "·";
   return `${value.toFixed(digits)}%`;
 }
 
 export function formatNumber(value: number, digits = 2): string {
-  if (!Number.isFinite(value)) return "—";
+  if (!Number.isFinite(value)) return "·";
   return value.toFixed(digits);
 }
 

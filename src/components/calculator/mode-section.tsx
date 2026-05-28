@@ -81,7 +81,7 @@ export function ModeSection() {
                 className="h-8 font-mono text-sm tabular-nums"
               />
               <span className="w-14 text-right font-mono text-sm tabular-nums">
-                {data[i] ? `${data[i].dao.toFixed(0)}%` : "—"}
+                {data[i] ? `${data[i].dao.toFixed(0)}%` : "·"}
               </span>
               <Button
                 variant="ghost"

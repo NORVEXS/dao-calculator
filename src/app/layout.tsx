@@ -26,7 +26,7 @@ const SITE_URL = "https://dao-calculator.pages.dev";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "DAo Calculator — Overcast Daylight Autonomy from Daylight Factor",
+    default: "DAo Calculator: Overcast Daylight Autonomy from Daylight Factor",
     template: "%s · DAo Calculator",
   },
   description:
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "DAo Calculator — Overcast Daylight Autonomy from Daylight Factor",
+    title: "DAo Calculator: Overcast Daylight Autonomy from Daylight Factor",
     description:
       "Convert DF into DAo and DAo.con instantly with scientific-grade visualizations.",
     siteName: "DAo Calculator",
@@ -60,13 +60,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "DAo Calculator — Overcast Daylight Autonomy from the Daylight Factor",
+        alt: "DAo Calculator: Overcast Daylight Autonomy from the Daylight Factor",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DAo Calculator — Overcast Daylight Autonomy from Daylight Factor",
+    title: "DAo Calculator: Overcast Daylight Autonomy from Daylight Factor",
     description:
       "Convert Daylight Factor into Overcast Daylight Autonomy with scientific-grade visualizations.",
     images: ["/og.png"],

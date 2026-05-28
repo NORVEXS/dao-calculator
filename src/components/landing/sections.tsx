@@ -210,7 +210,7 @@ export function MetricsSection() {
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground text-pretty">
                 {c.body}
               </p>
-              <p className="mt-5 border-l-2 border-[var(--daylight)]/55 bg-[var(--daylight)]/[0.06] py-2 pl-3 font-mono text-xs leading-relaxed text-foreground/80">
+              <p className="mt-5 rounded-md bg-[var(--daylight)]/[0.08] px-3 py-2.5 font-mono text-xs leading-relaxed text-foreground/85 ring-1 ring-inset ring-[var(--daylight)]/15">
                 {c.example}
               </p>
             </article>

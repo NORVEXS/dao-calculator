@@ -16,7 +16,7 @@ export function AnimatedNumber({
 }) {
   const mv = useMotionValue(value);
   const text = useTransform(mv, (v) =>
-    Number.isFinite(v) ? v.toFixed(digits) : "—",
+    Number.isFinite(v) ? v.toFixed(digits) : "·",
   );
 
   useEffect(() => {
