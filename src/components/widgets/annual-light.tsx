@@ -23,12 +23,20 @@ const HOUR_START = 4 * 60;
 const HOUR_END = 20 * 60;
 const HOUR_STEP = 30; // 33 rows
 
-const MONTHS_ES = ["E", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
-
 export function AnnualLightWidget() {
   const { t, lang } = useLanguage();
   const [latitude, setLatitude] = useState(37);
   const [hover, setHover] = useState<{ d: number; m: number; v: number } | null>(null);
+
+  const monthInitials = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, m) =>
+        new Date(2007, m, 1)
+          .toLocaleDateString(lang === "es" ? "es-ES" : "en-US", { month: "narrow" })
+          .toUpperCase(),
+      ),
+    [lang],
+  );
 
   const { rows, cols, grid, maxE } = useMemo(() => {
     const days: number[] = [];
@@ -112,7 +120,7 @@ export function AnnualLightWidget() {
           </div>
           {/* month axis */}
           <div className="mt-1 flex justify-between px-[1px] text-[0.6rem] text-muted-foreground">
-            {MONTHS_ES.map((m, i) => (
+            {monthInitials.map((m, i) => (
               <span key={i}>{m}</span>
             ))}
           </div>

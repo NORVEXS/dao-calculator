@@ -43,7 +43,18 @@ export const TIME_GRID_START_MIN = 4 * 60;
 export const TIME_GRID_END_MIN = 23 * 60;
 export const TIME_STEP_MIN = 15;
 
-/** Coefficients of the CIE overcast-sky horizontal illuminance model (lux). */
+/**
+ * Coefficients of the overcast-sky horizontal illuminance model (lux):
+ *   E_ext = (7/9)·π·L_z,   L_z = 100 + 7580·sin(γ)^1.36   [cd/m²]
+ *
+ *  - The (7π/9)·L_z relation is the exact horizontal illuminance produced by the
+ *    CIE Standard Overcast Sky luminance distribution L(θ) = L_z·(1 + 2·sinθ)/3
+ *    (Moon & Spencer, 1942; CIE S 003).
+ *  - The zenith-luminance regression L_z = 100 + 7580·sin(γ)^1.36 is the
+ *    empirical fit of Karayel, Navvab, Ne'eman & Selkowitz (1984), "Zenith
+ *    luminance and sky luminance distributions for daylighting calculations",
+ *    Energy and Buildings 6, 283-291 — the same model used by the workbook.
+ */
 export const OVERCAST_BASE = 100;
 export const OVERCAST_GAIN = 7580;
 export const OVERCAST_EXP = 1.36;

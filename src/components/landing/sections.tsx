@@ -37,7 +37,7 @@ export function HowItWorks() {
           {steps.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
               <li className="group grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 border-b border-border/45 py-6 first:pt-0 last:border-b-0 last:pb-0">
-                <span className="font-mono text-2xl font-medium tabular-nums text-muted-foreground/45 transition-colors duration-300 group-hover:text-[var(--daylight)]">
+                <span className="font-mono text-2xl font-medium tabular-nums text-muted-foreground/45 transition-all duration-300 group-hover:text-glow group-hover:text-[var(--daylight)]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div>
@@ -65,6 +65,7 @@ export function ScienceSection() {
       className="relative scroll-mt-20 overflow-hidden border-y border-border/60 bg-muted/30"
     >
       <div className="absolute inset-0 -z-10 bg-grid opacity-[0.18]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-48 aurora opacity-60" />
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionMark index="02" label={t("science.eyebrow")} />
 
@@ -161,14 +162,14 @@ export function MetricsSection() {
   const cards = [
     {
       tag: "DAo",
-      unit: "%",
+      unit: t("metrics.daoUnit"),
       title: t("metrics.daoTitle"),
       body: t("metrics.daoBody"),
       example: t("metrics.daoExample"),
     },
     {
       tag: "DAo.con",
-      unit: "0–1",
+      unit: t("metrics.conUnit"),
       title: t("metrics.conTitle"),
       body: t("metrics.conBody"),
       example: t("metrics.conExample"),
@@ -248,11 +249,12 @@ export function CtaSection() {
   return (
     <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
       <Reveal>
-        <div className="glow-brand relative overflow-hidden rounded-2xl border border-border/70 bg-card px-6 py-16 text-center sm:px-12">
-          <div className="bg-grid bg-grid-fade absolute inset-0 -z-10 opacity-30" />
+        <div className="panel relative overflow-hidden rounded-3xl px-6 py-20 text-center sm:px-12">
+          <div className="aurora absolute inset-0 -z-10 opacity-70" />
+          <div className="bg-grid bg-grid-fade absolute inset-0 -z-10 opacity-20" />
           <span
             aria-hidden
-            className="mx-auto mb-6 block size-3 rounded-full bg-[var(--daylight)] shadow-[0_0_24px_6px_color-mix(in_oklab,var(--daylight)_55%,transparent)]"
+            className="mx-auto mb-7 block size-3 rounded-full bg-[var(--daylight)] shadow-[0_0_28px_8px_color-mix(in_oklab,var(--daylight)_60%,transparent)]"
           />
           <h2 className="font-heading mx-auto max-w-2xl text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             {t("cta.title")}
@@ -276,13 +278,13 @@ function SectionMark({ index, label }: { index: string; label: string }) {
   return (
     <Reveal>
       <div className="flex items-center gap-4">
-        <span className="font-mono text-sm font-medium tabular-nums text-[var(--daylight)]">
+        <span className="text-glow font-mono text-sm font-medium tabular-nums text-[var(--daylight)]">
           {index}
         </span>
         <span className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
           {label}
         </span>
-        <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
+        <span className="h-px flex-1 bg-gradient-to-r from-[var(--daylight)]/40 via-border to-transparent" />
       </div>
     </Reveal>
   );

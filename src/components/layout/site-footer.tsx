@@ -8,6 +8,7 @@ const REFERENCES = [
   "Acosta, I.; Campano, M. A.; Domínguez-Amarillo, S.; Fernández-Agüera, J. (2019). Overcast Daylight Autonomy: A new concept to link daylight dynamic metrics with daylight factors. LEUKOS 15 (4), 254–269.",
   "Campano, M. A.; Acosta, I.; Domínguez, S.; López-Lovillo, R. (2022). Dynamic analysis of office lighting smart controls management based on user requirements. Automation in Construction 133, 104021.",
   "Acosta, I.; Campano, M. A.; Domínguez-Amarillo, S.; Navarro, J. (2023). Continuous Overcast Daylight Autonomy (DAo.con): A New Dynamic Metric for Sensor-Less Lighting Smart Controls. LEUKOS 19 (3), 343–367.",
+  "Karayel, M.; Navvab, M.; Ne'eman, E.; Selkowitz, S. (1984). Zenith luminance and sky luminance distributions for daylighting calculations. Energy and Buildings 6 (3), 283–291.",
 ];
 
 export function SiteFooter() {

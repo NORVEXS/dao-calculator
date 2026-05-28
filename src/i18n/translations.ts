@@ -6,24 +6,25 @@ export const LANGUAGES: { code: Lang; label: string }[] = [
 ];
 
 /**
- * UI string dictionary. Spanish is the default. Use `*term*` to emphasize a
- * term as <strong> (rendered by the `T`/`renderEmphasis` helper).
+ * UI string dictionary. Spanish is written natively (not translated from the
+ * English) and the English mirrors it. Use `*term*` to emphasise a term as
+ * <strong> (rendered by the `T` / `renderEmphasis` helper).
  */
 export const translations = {
   es: {
     nav: {
       how: "Cómo funciona",
-      science: "La ciencia",
+      science: "El método",
       metrics: "Métricas",
       openCalculator: "Abrir calculadora",
     },
     hero: {
-      badge: "Método de la Universidad de Sevilla · validado",
+      badge: "Método de la Universidad de Sevilla, reproducido con fidelidad",
       titlePre: "Convierte un ",
       titleHighlight: "Factor de Luz Diurna",
-      titlePost: " en Autonomía Lumínica con cielo cubierto, al instante.",
+      titlePost: " en autonomía de luz natural con cielo cubierto, al instante.",
       subtitle:
-        "Una calculadora científica que convierte el *DF*, un valor estático, en las métricas dinámicas *DAo* y *DAo.con*: para puntos sueltos, secciones verticales o la planta entera, con mapas de calor y curvas de respuesta.",
+        "Una calculadora científica que traduce el *DF*, un dato estático, a las métricas dinámicas *DAo* y *DAo.con*: para un punto, una sección vertical o la planta completa, con mapas de calor y curvas de respuesta.",
       ctaOpen: "Abrir la calculadora",
       ctaMethod: "Ver el método",
       statModes: "Modos de cálculo",
@@ -32,28 +33,28 @@ export const translations = {
       liveConversion: "Conversión interactiva",
       daylightFactor: "Factor de Luz Diurna",
       demoNote:
-        "Calculado para latitud 37°, jornada de 08:00 a 17:00 y objetivo de 300 lx; puedes ajustarlo todo dentro de la calculadora.",
+        "Calculado para 37° de latitud, jornada de 08:00 a 17:00 y un objetivo de 300 lx. Todo se puede ajustar dentro de la calculadora.",
     },
     how: {
       eyebrow: "Cómo funciona",
-      title: "La ciencia de la luz, en tres pasos sencillos",
+      title: "Del Factor de Luz Diurna al DAo, paso a paso",
       subtitle:
-        "Lo complicado (una simulación anual completa con cielo cubierto) se resuelve al instante en tu navegador. Tú solo te ocupas del Factor de Luz Diurna.",
-      step1Title: "Introduce tu Factor de Luz Diurna",
+        "Lo difícil, simular un año entero de cielo cubierto, sucede en tu navegador en milisegundos. Tú solo aportas el Factor de Luz Diurna.",
+      step1Title: "Introduce el Factor de Luz Diurna",
       step1Body:
-        "Indica el DF en un punto, a lo largo de una sección vertical o en una malla de toda la planta. El DF es un indicador estático del comportamiento lumínico de un espacio, independiente de su ubicación.",
+        "Aporta el DF en un punto, a lo largo de una sección vertical o en una malla de toda la planta. El DF es un indicador estático del comportamiento lumínico del espacio y, bajo cielo cubierto, no depende de hacia dónde miren las ventanas.",
       step2Title: "Modelamos el cielo cubierto",
       step2Body:
-        "Para cada intervalo de 15 minutos de las horas ocupadas del año calculamos, a partir de la geometría solar, la iluminancia exterior con cielo cubierto CIE; y de ahí la interior: E = DF × E_ext.",
+        "Para cada intervalo de 15 minutos del año ocupado calculamos, a partir de la geometría solar, la iluminancia exterior bajo cielo cubierto CIE; de ahí sale la interior: E_int = E_ext · DF / 100.",
       step3Title: "Lee el DAo y el DAo.con",
       step3Body:
-        "El DAo es la fracción del tiempo ocupado en que el espacio alcanza tu objetivo en lux; el DAo.con, además, tiene en cuenta la luz parcial. Lo verás todo en medidores, curvas y mapas de calor.",
+        "El DAo es la fracción del tiempo ocupado en que el punto iguala o supera tu objetivo en lux; el DAo.con, además, reconoce la luz parcial. Lo verás en medidores, curvas y mapas de calor.",
     },
     science: {
-      eyebrow: "La ciencia",
-      title: "Un modelo anual de luz natural fiel",
+      eyebrow: "El método",
+      title: "Un modelo anual de luz natural fiel al original",
       subtitle:
-        "Esta herramienta reproduce con exactitud la hoja de cálculo original de la Universidad de Sevilla. El DAo es *independiente de la orientación y de la ubicación*, porque parte del Factor de Luz Diurna, que es estático; aun así, la conversión sí tiene en cuenta la latitud, el horario y tu umbral de iluminancia.",
+        "Esta herramienta reproduce con exactitud la hoja de cálculo original de la Universidad de Sevilla. El *Factor de Luz Diurna no depende de la orientación*, porque el cielo cubierto reparte su luz por igual en todas las direcciones; el *DAo*, en cambio, sí depende de la latitud, del horario y del umbral de iluminancia que fijes.",
       tryNow: "Pruébalo ahora",
       skyNote: "Cielo cubierto estándar CIE · 300 lx por defecto",
       chain1: "Geometría solar",
@@ -65,21 +66,23 @@ export const translations = {
       chain4: "Iluminancia interior",
       chain4d: "E_int = E_ext × DF/100",
       chain5: "DAo / DAo.con",
-      chain5d: "conteo y crédito continuo frente al umbral",
+      chain5d: "recuento y crédito continuo frente al umbral",
       legend:
-        "δ declinación · φ latitud · H ángulo horario · d día del año (d₀ referencia) · Eₜ umbral · N pasos ocupados al año · ⟨ ⟩ media.",
+        "γ elevación solar · δ declinación · φ latitud · H ángulo horario · d día del año (d₀ referencia) · E_ext luz exterior · Eₜ umbral · N pasos ocupados al año · ⟨·⟩ media.",
     },
     metrics: {
       eyebrow: "Las métricas",
-      title: "Dos métricas, una lectura clara",
-      daoTitle: "Autonomía Lumínica con cielo cubierto",
+      title: "Dos cifras que se entienden a la primera",
+      daoTitle: "Autonomía lumínica con cielo cubierto",
       daoBody:
-        "El porcentaje del tiempo ocupado en que un punto alcanza o supera la iluminancia objetivo (normalmente 300 lx) con cielo cubierto: el peor escenario para la luz natural.",
-      daoExample: "DAo = 50 % → la mitad de la jornada no hace falta luz eléctrica.",
-      conTitle: "Autonomía Lumínica Continua con cielo cubierto",
+        "Porcentaje del tiempo ocupado en que un punto iguala o supera la iluminancia objetivo (habitualmente 300 lx) con cielo cubierto, el escenario más desfavorable para la luz natural.",
+      daoExample: "DAo = 50 % → durante la mitad de la jornada no hace falta encender la luz.",
+      daoUnit: "% del tiempo",
+      conTitle: "Autonomía lumínica continua con cielo cubierto",
       conBody:
-        "Una versión más matizada que también valora la luz parcial: un punto con 150 lx frente a un objetivo de 300 lx suma 0,5 en vez de descartarse.",
-      conExample: "DAo.con = 0,75 → de media se alcanza el 75 % del objetivo.",
+        "Una versión más fina que también puntúa la luz parcial: un punto con 150 lx frente a un objetivo de 300 lx suma 0,5 en lugar de descartarse.",
+      conExample: "DAo.con = 75 % → de media se alcanza el 75 % del objetivo.",
+      conUnit: "% del objetivo",
       modesTitle: "Tres formas de calcular",
       modesSubtitle: "Desde una sola lectura de DF hasta el mapa de calor de toda la planta.",
       modeSingle: "Punto individual",
@@ -87,14 +90,14 @@ export const translations = {
       modeMatrix: "Matriz de planta",
     },
     cta: {
-      title: "Haz que la luz natural se entienda de un vistazo.",
+      title: "Pon números a la luz natural de tu proyecto.",
       subtitle:
-        "Abre la calculadora y convierte tus Factores de Luz Diurna en DAo y DAo.con: sin instalar nada, sin hojas de cálculo y con gráficos al instante.",
-      button: "Lanzar la calculadora",
+        "Abre la calculadora y convierte tus Factores de Luz Diurna en DAo y DAo.con. Sin instalar nada, sin hojas de cálculo y con gráficos al momento.",
+      button: "Abrir la calculadora",
     },
     footer: {
       tagline:
-        "Una herramienta científica abierta para convertir el Factor de Luz Diurna en Autonomía Lumínica con cielo cubierto, fiel al método original de la Universidad de Sevilla.",
+        "Una herramienta abierta para convertir el Factor de Luz Diurna en autonomía lumínica con cielo cubierto, fiel al método original de la Universidad de Sevilla.",
       calculator: "Calculadora",
       method: "Método",
       referencesTitle: "Metodología y referencias",
@@ -105,7 +108,7 @@ export const translations = {
     calc: {
       title: "Calculadora DAo",
       subtitle:
-        "Convierte el Factor de Luz Diurna en Autonomía Lumínica con cielo cubierto: ajusta los parámetros y elige un modo de cálculo.",
+        "Convierte el Factor de Luz Diurna en autonomía lumínica con cielo cubierto. Ajusta los parámetros y elige un modo de cálculo.",
       tabSingle: "Punto individual",
       tabSection: "Sección vertical",
       tabMatrix: "Matriz de planta",
@@ -113,51 +116,51 @@ export const translations = {
     params: {
       title: "Parámetros",
       reset: "Restablecer",
-      location: "Ubicación",
+      location: "Emplazamiento",
       latitude: "Latitud",
       latitudeHint:
-        "Latitud del emplazamiento, en grados. Determina el perfil anual de elevación solar del que depende la iluminancia con cielo cubierto.",
+        "Latitud del emplazamiento, en grados. Define el perfil anual de elevación solar del que depende la iluminancia con cielo cubierto.",
       longitude: "Longitud",
-      longitudeHint: "Grados al este de Greenwich. Solo influye en la pequeña corrección de tiempo solar.",
+      longitudeHint: "Grados al este de Greenwich. Solo interviene en la pequeña corrección de tiempo solar.",
       timezone: "Huso horario",
-      timezoneHint: "Diferencia respecto a UTC, en horas (p. ej. +1 para la hora central europea).",
+      timezoneHint: "Desfase respecto a UTC, en horas (p. ej. +1 para la hora central europea).",
       dst: "Horario de verano",
-      dstHint: "Aplica el cambio de hora de verano europeo al pasar de la hora oficial al tiempo solar.",
+      dstHint: "Aplica el cambio de hora europeo al pasar de la hora oficial al tiempo solar.",
       schedule: "Horario de ocupación",
       checkin: "Entrada",
       checkinHint: "Hora a la que empieza la ocupación (hora local).",
       checkout: "Salida",
-      checkoutHint: "Hora a la que termina la ocupación (no incluida).",
+      checkoutHint: "Hora a la que termina la ocupación (no se incluye).",
       weekend: "Excluir fines de semana",
       weekendHint: "Cuenta solo los 260 días laborables del modelo, igual que la hoja de referencia.",
-      break: "Pausa de comida",
+      break: "Pausa de mediodía",
       breakHint: "Descuenta de las métricas una franja diaria sin ocupación (p. ej. de 11:00 a 12:00).",
       breakStart: "Inicio de la pausa",
       breakEnd: "Fin de la pausa",
       target: "Objetivo de iluminancia",
       threshold: "Umbral",
-      thresholdHint: "Iluminancia mínima que se considera «luz suficiente» (normalmente 300 lx).",
+      thresholdHint: "Iluminancia mínima que se considera «luz suficiente» (habitualmente 300 lx).",
     },
     single: {
       title: "Punto individual",
       subtitle: "Convierte una lectura de Factor de Luz Diurna en DAo y DAo.con.",
       dfHint:
-        "El Factor de Luz Diurna del punto: el cociente entre la iluminancia horizontal interior y la exterior con cielo cubierto, en porcentaje.",
-      performance: "Rendimiento",
+        "El Factor de Luz Diurna del punto: el cociente entre la iluminancia horizontal interior y la exterior con cielo cubierto, expresado en porcentaje.",
+      performance: "Valoración",
       exportCsv: "Exportar CSV",
       curveTitle: "Curva de respuesta",
-      curveSubtitle: "Cómo crecen DAo y DAo.con con el Factor de Luz Diurna.",
+      curveSubtitle: "Cómo crecen el DAo y el DAo.con al aumentar el Factor de Luz Diurna.",
     },
     section: {
       title: "Sección vertical",
       subtitle:
-        "Una lista de puntos a lo largo de una sección; normalmente el DF disminuye según te alejas de la ventana.",
+        "Una serie de puntos a lo largo de una sección; lo habitual es que el DF disminuya a medida que te alejas de la ventana.",
       colDist: "Dist. (m)",
       colDf: "DF (%)",
       colDao: "DAo",
       addPoint: "Añadir punto",
-      profileTitle: "Perfil de sección",
-      profileSubtitle: "DAo y DAo.con a lo largo de la profundidad de la sección.",
+      profileTitle: "Perfil de la sección",
+      profileSubtitle: "DAo y DAo.con según la profundidad de la sección.",
       byDepth: "Autonomía lumínica por profundidad",
       emptyTitle: "Añade al menos dos puntos",
       emptyBody:
@@ -190,50 +193,51 @@ export const translations = {
         "Cada nodo convierte su DF en la métrica elegida con los parámetros de la izquierda.",
     },
     heatmap: {
-      depth: "Profundidad →",
+      depth: "Profundidad",
       window: "Ventana",
-      width: "Anchura →",
+      back: "Fondo",
+      width: "Anchura",
       cell: "Celda",
     },
     bands: {
       excellent: "Excelente",
-      excellentDesc: "Excelente luz natural incluso bajo cielos cubiertos.",
+      excellentDesc: "Luz natural excelente incluso con cielo cubierto.",
       good: "Bueno",
-      goodDesc: "Luz natural fiable durante la mayoría de las horas ocupadas.",
+      goodDesc: "Luz natural fiable durante la mayor parte de la jornada.",
       fair: "Aceptable",
       fairDesc: "La luz natural cubre parte del tiempo ocupado.",
       low: "Bajo",
-      lowDesc: "Se necesita luz eléctrica la mayor parte del tiempo.",
+      lowDesc: "Se necesita luz eléctrica casi todo el tiempo.",
     },
     chart: {
       dfAxis: "Factor de Luz Diurna (%)",
     },
     widgets: {
       solar: {
-        title: "Trayectoria solar y luz disponible",
+        title: "Recorrido solar y luz disponible",
         time: "Hora",
         elevation: "Elevación solar",
         extIll: "Luz exterior",
         day: "Día del año",
         latitude: "Latitud",
-        note: "Elevación máxima del día: {peak}°. Cuanto más alto está el sol, más luz aporta el cielo cubierto y, por tanto, mayor es el DAo.",
+        note: "Elevación máxima del día: {peak}°. Cuanto más alto sube el sol, más ilumina el cielo cubierto y mayor es el DAo.",
       },
       annual: {
         title: "Calendario anual de luz",
         subtitle:
           "Iluminancia exterior con cielo cubierto a lo largo del año y del día. Mueve la latitud para ver cómo cambia.",
         hover: "{date} a las {time}: {value} lx",
-        hint: "Pasa el ratón por el mapa para ver la luz exterior en cada momento.",
+        hint: "Pasa el cursor por el mapa para leer la luz exterior en cada momento.",
       },
       depth: {
         title: "Cómo decae la luz hacia el fondo de la sala",
         subtitle:
-          "El DF, y con él el DAo, baja según te alejas de la ventana. Cada círculo es el DAo en ese punto.",
+          "El DF, y con él el DAo, baja a medida que te alejas de la ventana. Cada círculo es el DAo en ese punto.",
         window: "Ventana",
         back: "Fondo de la sala",
         windowDf: "DF junto a la ventana",
         roomDepth: "Profundidad de la sala",
-        note: "Esquema ilustrativo de cómo decae el DF con la profundidad; el DAo de cada punto sí se calcula con el motor real.",
+        note: "Esquema ilustrativo del decaimiento del DF con la profundidad; el DAo de cada punto sí se calcula con el motor real.",
       },
       compare: {
         title: "Compara dos escenarios",
@@ -268,17 +272,17 @@ export const translations = {
   en: {
     nav: {
       how: "How it works",
-      science: "The science",
+      science: "The method",
       metrics: "Metrics",
       openCalculator: "Open calculator",
     },
     hero: {
-      badge: "University of Seville daylighting method · validated",
+      badge: "A faithful reimplementation of the University of Seville method",
       titlePre: "Turn a ",
       titleHighlight: "Daylight Factor",
-      titlePost: " into Overcast Daylight Autonomy, instantly.",
+      titlePost: " into overcast daylight autonomy, instantly.",
       subtitle:
-        "A scientific calculator that converts the static *DF* into the dynamic *DAo* and *DAo.con* metrics: for single points, vertical sections and full floor-plan matrices, with heatmaps and response curves.",
+        "A scientific calculator that turns the static *DF* into the dynamic *DAo* and *DAo.con* metrics: for a single point, a vertical section or a whole floor-plan matrix, with heatmaps and response curves.",
       ctaOpen: "Open the calculator",
       ctaMethod: "See the method",
       statModes: "Calculation modes",
@@ -287,28 +291,28 @@ export const translations = {
       liveConversion: "Interactive conversion",
       daylightFactor: "Daylight Factor",
       demoNote:
-        "Computed for latitude 37°, an 08:00–17:00 schedule and a 300 lx target. Everything is adjustable inside.",
+        "Computed for latitude 37°, an 08:00–17:00 schedule and a 300 lx target. Everything is adjustable inside the calculator.",
     },
     how: {
       eyebrow: "How it works",
-      title: "Complex daylight science, three simple steps",
+      title: "From Daylight Factor to DAo, step by step",
       subtitle:
-        "The hard part, a full annual overcast-sky simulation, runs instantly in your browser. You only ever think in Daylight Factor.",
-      step1Title: "Enter your Daylight Factor",
+        "The hard part, simulating a full overcast-sky year, happens in your browser in milliseconds. You only ever supply the Daylight Factor.",
+      step1Title: "Enter the Daylight Factor",
       step1Body:
-        "Provide DF at a point, along a vertical section, or across a whole floor-plan grid. DF is a static, location-independent indicator of a space's daylight performance.",
+        "Provide DF at a point, along a vertical section, or across a whole floor-plan grid. DF is a static indicator of a space's daylight performance and, under an overcast sky, it doesn't depend on which way the windows face.",
       step2Title: "We model the overcast sky",
       step2Body:
-        "For every 15-minute step of the occupied year we compute the CIE overcast-sky exterior illuminance from solar geometry, then the interior illuminance as E = DF × E_ext.",
+        "For every 15-minute step of the occupied year we compute the CIE overcast-sky exterior illuminance from solar geometry, then the interior illuminance as E_int = E_ext × DF/100.",
       step3Title: "Read DAo & DAo.con",
       step3Body:
-        "DAo is the share of occupied time the space stays above your lux target; DAo.con also credits partial daylight. Results render as gauges, curves and heatmaps.",
+        "DAo is the share of occupied time the point meets or beats your lux target; DAo.con also credits partial daylight. Results render as gauges, curves and heatmaps.",
     },
     science: {
-      eyebrow: "The science",
+      eyebrow: "The method",
       title: "A faithful annual daylight model",
       subtitle:
-        "This tool reproduces the original University of Seville workbook exactly. DAo is *independent of orientation and location* because it builds on the static Daylight Factor. Even so, the conversion still accounts for latitude, schedule and your illuminance threshold.",
+        "This tool reproduces the original University of Seville workbook exactly. The *Daylight Factor is orientation-independent*, because an overcast sky spreads its light evenly in every direction; *DAo*, however, does depend on latitude, schedule and the illuminance threshold you set.",
       tryNow: "Try it now",
       skyNote: "CIE Standard Overcast Sky · 300 lx default",
       chain1: "Solar geometry",
@@ -322,19 +326,21 @@ export const translations = {
       chain5: "DAo / DAo.con",
       chain5d: "count & continuous credit vs. threshold",
       legend:
-        "δ declination · φ latitude · H hour angle · d day of year (d₀ reference) · Eₜ threshold · N occupied steps per year · ⟨ ⟩ mean.",
+        "γ solar elevation · δ declination · φ latitude · H hour angle · d day of year (d₀ reference) · E_ext exterior light · Eₜ threshold · N occupied steps per year · ⟨·⟩ mean.",
     },
     metrics: {
       eyebrow: "The metrics",
-      title: "Two metrics, one clear picture",
+      title: "Two figures you grasp at a glance",
       daoTitle: "Overcast Daylight Autonomy",
       daoBody:
-        "The percentage of occupied time a point stays at or above the target illuminance (typically 300 lx) under overcast skies, the worst-case daylight scenario.",
-      daoExample: "DAo = 50% → half the occupied hours need no electric light.",
+        "The percentage of occupied time a point meets or beats the target illuminance (typically 300 lx) under an overcast sky, the worst case for daylight.",
+      daoExample: "DAo = 50% → for half the working day no electric light is needed.",
+      daoUnit: "% of time",
       conTitle: "Continuous Overcast Daylight Autonomy",
       conBody:
-        "A nuanced version that also credits partial daylight: a point at 150 lx against a 300 lx target contributes 0.5 instead of being discarded.",
-      conExample: "DAo.con = 0.75 → on average 75% of the target is reached.",
+        "A finer version that also credits partial daylight: a point at 150 lx against a 300 lx target contributes 0.5 instead of being discarded.",
+      conExample: "DAo.con = 75% → on average, 75% of the target is reached.",
+      conUnit: "% of target",
       modesTitle: "Three ways to calculate",
       modesSubtitle: "From a single DF reading to a full floor-plan heatmap.",
       modeSingle: "Single point",
@@ -342,14 +348,14 @@ export const translations = {
       modeMatrix: "Plan matrix",
     },
     cta: {
-      title: "Make daylight performance obvious.",
+      title: "Put numbers on your project's daylight.",
       subtitle:
-        "Open the calculator and convert your Daylight Factors into DAo and DAo.con. No install, no spreadsheet, instant visuals.",
-      button: "Launch the calculator",
+        "Open the calculator and convert your Daylight Factors into DAo and DAo.con. No install, no spreadsheet, visuals straight away.",
+      button: "Open the calculator",
     },
     footer: {
       tagline:
-        "An open scientific tool to convert Daylight Factor into Overcast Daylight Autonomy, faithful to the original University of Seville method.",
+        "An open tool to convert Daylight Factor into overcast daylight autonomy, faithful to the original University of Seville method.",
       calculator: "Calculator",
       method: "Method",
       referencesTitle: "Methodology & references",
@@ -360,7 +366,7 @@ export const translations = {
     calc: {
       title: "DAo Calculator",
       subtitle:
-        "Convert Daylight Factor into Overcast Daylight Autonomy. Adjust the parameters and pick a calculation mode.",
+        "Convert Daylight Factor into overcast daylight autonomy. Adjust the parameters and pick a calculation mode.",
       tabSingle: "Single point",
       tabSection: "Vertical section",
       tabMatrix: "Plan matrix",
@@ -398,15 +404,15 @@ export const translations = {
       subtitle: "Convert one Daylight Factor reading into DAo and DAo.con.",
       dfHint:
         "The point's Daylight Factor: interior/exterior horizontal illuminance under an overcast sky, as a percentage.",
-      performance: "Performance",
+      performance: "Rating",
       exportCsv: "Export CSV",
       curveTitle: "Response curve",
-      curveSubtitle: "How DAo and DAo.con grow with the Daylight Factor.",
+      curveSubtitle: "How DAo and DAo.con grow as the Daylight Factor rises.",
     },
     section: {
       title: "Vertical section",
       subtitle:
-        "A list of points across a section, with DF typically decreasing as depth increases from the window.",
+        "A list of points across a section, where DF usually drops as you move away from the window.",
       colDist: "Dist. (m)",
       colDf: "DF (%)",
       colDao: "DAo",
@@ -445,20 +451,21 @@ export const translations = {
         "Each node converts its DF into the selected metric using the parameters on the left.",
     },
     heatmap: {
-      depth: "Depth →",
+      depth: "Depth",
       window: "Window",
-      width: "Width →",
+      back: "Back",
+      width: "Width",
       cell: "Cell",
     },
     bands: {
       excellent: "Excellent",
       excellentDesc: "Strong daylighting even under overcast skies.",
       good: "Good",
-      goodDesc: "Reliable daylight for most occupied hours.",
+      goodDesc: "Reliable daylight for most of the working day.",
       fair: "Fair",
       fairDesc: "Daylight supports part of the occupied time.",
       low: "Low",
-      lowDesc: "Electric lighting needed most of the time.",
+      lowDesc: "Electric lighting needed almost all the time.",
     },
     chart: {
       dfAxis: "Daylight Factor (%)",
@@ -488,7 +495,7 @@ export const translations = {
         back: "Room back",
         windowDf: "DF at the window",
         roomDepth: "Room depth",
-        note: "Illustrative model of DF decay with depth; each point converts its DF into DAo with the real engine.",
+        note: "Illustrative model of DF decay with depth; each point's DAo is computed with the real engine.",
       },
       compare: {
         title: "Compare two scenarios",

@@ -89,35 +89,37 @@
 }
 
 .dark {
-  /* Near-neutral deep charcoal — the cool-navy chroma is dialed right down so
-     it reads as graphite/ink, not "AI navy". */
-  --background: oklch(0.172 0.007 250);
-  --foreground: oklch(0.93 0.008 85);
+  /* Observatory at night: a deep blue-black sky. The chroma is low enough to
+     read as "night", not as a saturated SaaS navy, but present enough to feel
+     like a real sky rather than flat charcoal. */
+  --background: oklch(0.142 0.016 258);
+  --foreground: oklch(0.94 0.008 85);
 
-  --card: oklch(0.207 0.008 250);
-  --card-foreground: oklch(0.93 0.008 85);
-  --popover: oklch(0.2 0.008 250);
-  --popover-foreground: oklch(0.93 0.008 85);
+  --card: oklch(0.178 0.013 258);
+  --card-foreground: oklch(0.94 0.008 85);
+  --popover: oklch(0.17 0.013 258);
+  --popover-foreground: oklch(0.94 0.008 85);
 
-  --primary: oklch(0.785 0.135 75);
-  --primary-foreground: oklch(0.19 0.022 60);
-  --secondary: oklch(0.268 0.008 250);
-  --secondary-foreground: oklch(0.93 0.008 85);
-  --muted: oklch(0.255 0.007 250);
-  --muted-foreground: oklch(0.745 0.012 80);
-  --accent: oklch(0.3 0.018 78);
-  --accent-foreground: oklch(0.95 0.01 85);
+  /* The sun — a luminous daylight ochre. */
+  --primary: oklch(0.8 0.142 75);
+  --primary-foreground: oklch(0.17 0.022 58);
+  --secondary: oklch(0.238 0.013 258);
+  --secondary-foreground: oklch(0.94 0.008 85);
+  --muted: oklch(0.224 0.011 258);
+  --muted-foreground: oklch(0.715 0.014 82);
+  --accent: oklch(0.3 0.02 80);
+  --accent-foreground: oklch(0.96 0.01 85);
 
   --destructive: oklch(0.66 0.2 25);
 
-  --border: oklch(0.34 0.01 250 / 58%);
-  --input: oklch(0.42 0.012 250 / 45%);
-  --ring: oklch(0.72 0.13 75);
+  --border: oklch(0.37 0.013 258 / 55%);
+  --input: oklch(0.45 0.015 258 / 45%);
+  --ring: oklch(0.8 0.14 75);
 
-  --brand: oklch(0.63 0.085 242);
-  --brand-foreground: oklch(0.17 0.02 250);
+  --brand: oklch(0.66 0.1 245);
+  --brand-foreground: oklch(0.16 0.02 258);
   --violet: oklch(0.66 0.14 282);
-  --daylight: oklch(0.82 0.15 82);
+  --daylight: oklch(0.84 0.15 82);
 
   --chart-1: oklch(0.66 0.16 235);
   --chart-2: oklch(0.68 0.16 200);
@@ -185,14 +187,6 @@
     backdrop-filter: blur(12px) saturate(125%);
   }
 
-  /* Warm-tinted elevation, single light source from above. */
-  .glow-brand {
-    box-shadow:
-      inset 0 1px 0 0 color-mix(in oklab, var(--daylight) 12%, transparent),
-      0 1px 2px 0 color-mix(in oklab, oklch(0.2 0.03 60) 18%, transparent),
-      0 24px 60px -34px color-mix(in oklab, oklch(0.2 0.03 60) 55%, transparent);
-  }
-
   /* One restrained warm wash from the top — the sun, not a rainbow blob. */
   .aurora {
     background:
@@ -212,6 +206,55 @@
   }
   .dark .grain::before {
     opacity: 0.05;
+  }
+
+  /* ── Observatory language ─────────────────────────────────────────── */
+
+  /* Soft luminous halo for the sun and key glowing elements. */
+  .bloom {
+    filter:
+      drop-shadow(0 0 6px color-mix(in oklab, var(--daylight) 55%, transparent))
+      drop-shadow(0 0 22px color-mix(in oklab, var(--daylight) 35%, transparent));
+  }
+
+  /* Warm glow on a display number / heading, stronger in the dark. */
+  .text-glow {
+    text-shadow: 0 0 28px color-mix(in oklab, var(--daylight) 30%, transparent);
+  }
+  .dark .text-glow {
+    text-shadow: 0 0 36px color-mix(in oklab, var(--daylight) 45%, transparent);
+  }
+
+  /* The hero sky dome: a graded sky with a warm glow rising from the horizon.
+     Theme-aware — a deep dawn at night, a bright overcast by day. */
+  .sky-dome {
+    background:
+      radial-gradient(120% 90% at 50% 118%, color-mix(in oklab, var(--daylight) 26%, transparent) 0%, transparent 52%),
+      radial-gradient(80% 70% at 50% 120%, color-mix(in oklab, var(--primary) 18%, transparent) 0%, transparent 60%),
+      linear-gradient(180deg,
+        color-mix(in oklab, var(--brand) 14%, var(--background)) 0%,
+        var(--background) 58%);
+  }
+
+  /* Cinematic edge darkening to focus the centre. */
+  .vignette {
+    box-shadow:
+      inset 0 -80px 120px -60px color-mix(in oklab, var(--daylight) 22%, transparent),
+      inset 0 0 240px 60px color-mix(in oklab, oklch(0.05 0.02 260) 60%, transparent);
+  }
+
+  /* Elevated instrument panel: faint top sheen + tinted depth shadow. */
+  .panel {
+    background: color-mix(in oklab, var(--card) 86%, transparent);
+    border: 1px solid color-mix(in oklab, var(--border) 100%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 color-mix(in oklab, var(--foreground) 7%, transparent),
+      0 20px 50px -30px color-mix(in oklab, oklch(0.05 0.02 260) 70%, transparent);
+  }
+  .dark .panel {
+    box-shadow:
+      inset 0 1px 0 0 color-mix(in oklab, var(--daylight) 10%, transparent),
+      0 30px 70px -40px oklch(0.02 0.02 260 / 80%);
   }
 }
 

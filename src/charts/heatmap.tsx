@@ -33,11 +33,13 @@ export function Heatmap({
   return (
     <div className="space-y-3">
       <div className="flex gap-2">
-        {/* Y axis label */}
-        <div className="flex items-center">
-          <span className="rotate-180 text-[0.65rem] uppercase tracking-wide text-muted-foreground [writing-mode:vertical-rl]">
+        {/* Depth (Y) axis: window at the front (top), room back at the bottom. */}
+        <div className="flex flex-col items-end justify-between py-[1px] text-[0.6rem] uppercase tracking-wide text-muted-foreground">
+          <span>{t("heatmap.window")}</span>
+          <span className="[writing-mode:vertical-rl] rotate-180 tracking-[0.15em]">
             {t("heatmap.depth")}
           </span>
+          <span>{t("heatmap.back")}</span>
         </div>
 
         <div className="flex-1">
@@ -71,10 +73,9 @@ export function Heatmap({
               }),
             )}
           </div>
-          {/* X axis */}
-          <div className="mt-1 flex justify-between text-[0.65rem] uppercase tracking-wide text-muted-foreground">
-            <span>{t("heatmap.window")}</span>
-            <span>{t("heatmap.width")}</span>
+          {/* Width (X) axis */}
+          <div className="mt-1 text-center text-[0.6rem] uppercase tracking-[0.15em] text-muted-foreground">
+            {t("heatmap.width")}
           </div>
         </div>
       </div>

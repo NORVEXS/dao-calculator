@@ -29,7 +29,14 @@ export function declination(serial: number): number {
   return Math.asin(Math.sin(dayAngle(serial)) * OBLIQUITY_SIN) / DEG;
 }
 
-/** Equation of time in minutes. */
+/**
+ * Equation of time, in minutes. Uses the standard Whillier coefficient form
+ * (9.87·sin2B − 7.53·cosB − 1.5·sinB). The leading sign and the `b` reference
+ * follow the reference workbook's convention: the negation here is cancelled by
+ * the `− eot/60` term in `solarTimeOffset`, so the net solar-time correction
+ * carries the conventional sign. Kept verbatim to preserve 0.000% parity with
+ * the validated spreadsheet.
+ */
 export function equationOfTime(serial: number): number {
   const b = dayAngle(serial);
   return -(9.87 * Math.sin(2 * b) - 7.53 * Math.cos(b) - 1.5 * Math.sin(b));
